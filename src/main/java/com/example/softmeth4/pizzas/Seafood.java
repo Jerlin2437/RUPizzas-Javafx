@@ -13,6 +13,10 @@ public class Seafood extends Pizza{
         sauce = Sauce.ALFREDO;
     }
     @Override
+    protected String getPizzaType() {
+        return "Seafood";
+    }
+    @Override
     public double price() {
         return 17.99 + size.getPrice();
 

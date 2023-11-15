@@ -18,5 +18,34 @@ public abstract class Pizza {
         this.size = size;
         this.extraSauce = extraSauce;
         this.extraCheese = extraCheese;
+        toppings = new ArrayList<>();
+    }
+    @Override
+    public String toString() {
+        StringBuilder pizzaString = new StringBuilder();
+        pizzaString.append("Type: ").append(getPizzaType()).append("\n");
+        pizzaString.append("Size: ").append(size).append("\n");
+        pizzaString.append("Extra Sauce: ").append(extraSauce).append("\n");
+        pizzaString.append("Extra Cheese: ").append(extraCheese).append("\n");
+        pizzaString.append("Toppings: ").append(toppingsToString()).append("\n");
+        pizzaString.append("Price: $").append(price()).append("\n");
+
+        return pizzaString.toString();
+    }
+
+    protected abstract String getPizzaType();
+
+    private String toppingsToString() {
+        if (toppings.isEmpty()) {
+            return "None";
+        } else {
+            StringBuilder toppingsString = new StringBuilder();
+            for (Topping topping : toppings) {
+                toppingsString.append(topping).append(", ");
+            }
+            // Remove the trailing comma and space
+            toppingsString.setLength(toppingsString.length() - 2);
+            return toppingsString.toString();
+        }
     }
 }

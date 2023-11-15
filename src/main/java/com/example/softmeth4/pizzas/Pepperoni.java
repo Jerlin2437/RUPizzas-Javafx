@@ -10,7 +10,10 @@ public class Pepperoni extends Pizza{
         toppings.add(Topping.PEPPERONI);
         sauce = Sauce.TOMATO;
     }
-
+    @Override
+    protected String getPizzaType() {
+        return "Pepperoni";
+    }
     @Override
     public double price() {
         return 10.99 + size.getPrice();
