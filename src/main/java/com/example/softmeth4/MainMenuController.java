@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 
 public class MainMenuController {
 
-
     @FXML
     private Button buildPizza;
     @FXML
@@ -16,23 +15,28 @@ public class MainMenuController {
     private Button specialtyPizza;
     @FXML
     private Button storeOrdersBut;
-    public MainMenuController() {
+    private Button storeOrders;
+    private HelloApplication helloApplication;
 
+        public void setHelloApplication(HelloApplication helloApplication){
+            this.helloApplication = helloApplication;
+        }
+
+        @FXML
+        private void handleSpecialtyPizza (ActionEvent event){
+            HelloApplication.openSpecialty();
+        }
+        @FXML
+        private void handleBuildOwn (ActionEvent event){
+            HelloApplication.openBuildOwn();
+        }
+        @FXML
+        private void handleCurrentOrder (ActionEvent event){
+            HelloApplication.openCurrentOrder();
+        }
+        @FXML
+        private void handleStoreOrder (ActionEvent event){
+            HelloApplication.openStoreOrder();
+        }
     }
-    @FXML
-    private void handleSpecialtyPizza(ActionEvent event){
-        HelloApplication.openSpecialty();
-    }
-    @FXML
-    private void handleBuildOwn(ActionEvent event){
-        HelloApplication.openBuildOwn();
-    }
-    @FXML
-    private void handleCurrentOrder(ActionEvent event){
-        HelloApplication.openCurrentOrder();
-    }
-    @FXML
-    private void handleStoreOrder(ActionEvent event){
-        HelloApplication.openStoreOrder();
-    }
-}
+

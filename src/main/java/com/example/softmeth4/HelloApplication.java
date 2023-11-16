@@ -21,46 +21,69 @@ public class HelloApplication extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
-        storeOrders = new StoreOrders();
-        order = new Order();
-        primaryStage = stage;
-        showScreen("main-menu.fxml", "J&J Pizzeria <Main Menu>", 640, 480);
+    public void start(Stage primaryStage) {
+        try {
+            storeOrders = new StoreOrders();
+            order = new Order();
+            HelloApplication.primaryStage = primaryStage;
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("main-menu.fxml"));
+            Scene scene = new Scene(loader.load(), 640, 480);
+
+            MainMenuController controller = loader.getController();
+            controller.setHelloApplication(this);
+
+            primaryStage.setTitle("J&J Pizzeria <Main Menu>");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void showScreen(String fxmlFile, String title, int width, int height) {
         try {
-            if (!loaders.containsKey(fxmlFile)) {
-                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
-                loaders.put(fxmlFile, loader);
-            }
+            //can't use this code bc it doesn't let you reopen windows if they already been opened
+//            if (!loaders.containsKey(fxmlFile)) {
+//                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+//                loaders.put(fxmlFile, loader);
+//            }
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
+            loaders.put(fxmlFile, loader);
 
             Scene scene = new Scene(loaders.get(fxmlFile).load(), width, height);
-            primaryStage.setTitle(title);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            Stage newStage = new Stage();
+            newStage.setTitle(title);
+            newStage.setScene(scene);
+
+            //maybe need to make way to prevent multiple of the same windows being open
+            newStage.setOnCloseRequest(event -> {
+                event.consume(); // consumes the event to prevent default close behavior
+                newStage.hide(); // hides stage visibility instead of closing
+            });
+
+            newStage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public static StoreOrders getStoreOrders() {
+
+    public static StoreOrders getStoreOrders(){
         return storeOrders;
     }
     public static Order getOrder(){
         return order;
     }
     public static void openSpecialty(){
-        showScreen("specialty-pizza.fxml", "Order specialty pizzas!", 640, 480);
+        showScreen("specialty-pizza.fxml", "Order specialty pizzas!", 640, 500);
     }
     public static void openBuildOwn(){
-        showScreen("build-own.fxml", "Build your own pizza!", 640, 480);
+        showScreen("build-own.fxml", "Build your own pizza!", 640, 500);
     }
     public static void openCurrentOrder(){
-        showScreen("current-order.fxml", "Order Detail", 640, 480);
+        showScreen("current-order.fxml", "Order Detail", 640, 500);
     }
     public static void openStoreOrder(){
-        showScreen("store-order.fxml", "Store Orders", 640, 480);
+        showScreen("store-order.fxml", "Store Orders", 640, 500);
     }
-
 }
