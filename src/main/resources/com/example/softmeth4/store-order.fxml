@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.softmeth4.StoreOrderController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softmeth4.StoreOrderController">
+   <children>
+      <Label layoutX="244.0" layoutY="14.0" text="Store Orders">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="51.0" text="Order Number:" />
+      <Label layoutX="244.0" layoutY="52.0" text="Order Total: $" />
+      <TextField layoutX="120.0" layoutY="47.0" prefHeight="26.0" prefWidth="112.0" />
+      <TextField layoutX="327.0" layoutY="47.0" />
+      <ListView layoutX="32.0" layoutY="83.0" prefHeight="243.0" prefWidth="540.0" />
+      <Button layoutX="157.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Cancel Order" />
+      <Button layoutX="327.0" layoutY="341.0" mnemonicParsing="false" text="Export Store Orders" />
+   </children>
 </AnchorPane>
