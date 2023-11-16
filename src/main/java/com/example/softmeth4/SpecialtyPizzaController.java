@@ -8,21 +8,9 @@ import javafx.scene.control.*;
 public class SpecialtyPizzaController {
     private Order order;
     @FXML
-    private RadioButton alfredo;
-    @FXML
-    private RadioButton tomato;
-
-    @FXML
     private CheckBox extraCheese;
     @FXML
     private CheckBox extraSauce;
-
-    @FXML
-    private RadioButton small;
-    @FXML
-    private RadioButton medium;
-    @FXML
-    private RadioButton large;
 
     @FXML
     private ComboBox<?> chooseSpecialty;
@@ -34,9 +22,13 @@ public class SpecialtyPizzaController {
     private Button addToOrder;
 
     @FXML
+    private ToggleGroup specialtyRadioButtonGroup;
+    @FXML
     private ToggleGroup specialtySauceButtonGroup;
     public SpecialtyPizzaController(){
         order = HelloApplication.getOrder();
     }
+
+
 
 }

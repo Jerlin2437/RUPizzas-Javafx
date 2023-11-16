@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softmeth4.StoreOrderController">
    <children>
       <Label layoutX="244.0" layoutY="14.0" text="Store Orders">
@@ -17,8 +16,8 @@
       </Label>
       <Label layoutX="32.0" layoutY="51.0" text="Order Number:" />
       <Label layoutX="244.0" layoutY="52.0" text="Order Total: $" />
-      <TextField layoutX="120.0" layoutY="47.0" prefHeight="26.0" prefWidth="112.0" />
-      <TextField layoutX="327.0" layoutY="47.0" />
+      <TextField editable="false" layoutX="120.0" layoutY="47.0" prefHeight="26.0" prefWidth="112.0" />
+      <TextField editable="false" layoutX="327.0" layoutY="47.0" />
       <ListView layoutX="32.0" layoutY="83.0" prefHeight="243.0" prefWidth="540.0" />
       <Button layoutX="157.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="125.0" text="Cancel Order" />
       <Button layoutX="327.0" layoutY="341.0" mnemonicParsing="false" text="Export Store Orders" />

@@ -25,7 +25,7 @@
       <Label layoutX="373.0" layoutY="168.0" text="Selected Toppings" />
       <ListView layoutX="373.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="321.0" layoutY="73.0" text="Price: $" />
-      <TextField layoutX="373.0" layoutY="68.0" prefHeight="26.0" prefWidth="200.0" />
+      <TextField editable="false" layoutX="373.0" layoutY="68.0" prefHeight="26.0" prefWidth="200.0" />
       <Button layoutX="431.0" layoutY="102.0" mnemonicParsing="false" text="Add to order!" />
    </children>
 </AnchorPane>

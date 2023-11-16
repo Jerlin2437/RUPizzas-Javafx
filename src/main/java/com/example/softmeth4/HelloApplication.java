@@ -55,7 +55,7 @@ public class HelloApplication extends Application {
             newStage.setTitle(title);
             newStage.setScene(scene);
 
-            //maybe need to make way to prevent multiple of the same windows being open
+            //maybe need to make way to prevent opening alot of the same windows
             newStage.setOnCloseRequest(event -> {
                 event.consume(); // consumes the event to prevent default close behavior
                 newStage.hide(); // hides stage visibility instead of closing
