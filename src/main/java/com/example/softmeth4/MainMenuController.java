@@ -1,10 +1,13 @@
 package com.example.softmeth4;
 
+import com.example.softmeth4.businesslogic.StoreOrders;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 public class MainMenuController {
+
+
     @FXML
     private Button buildPizza;
     @FXML
@@ -12,8 +15,10 @@ public class MainMenuController {
     @FXML
     private Button specialtyPizza;
     @FXML
-    private Button storeOrders;
+    private Button storeOrdersBut;
+    public MainMenuController() {
 
+    }
     @FXML
     private void handleSpecialtyPizza(ActionEvent event){
         HelloApplication.openSpecialty();
