@@ -1,11 +1,12 @@
 package com.example.softmeth4;
 
+import com.example.softmeth4.businesslogic.Order;
 import com.example.softmeth4.businesslogic.StoreOrders;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class SpecialtyPizzaController {
-    private StoreOrders storeOrders;
+    private Order order;
     @FXML
     private RadioButton alfredo;
     @FXML
@@ -34,5 +35,8 @@ public class SpecialtyPizzaController {
 
     @FXML
     private ToggleGroup specialtySauceButtonGroup;
+    public SpecialtyPizzaController(){
+        order = HelloApplication.getOrder();
+    }
 
 }
