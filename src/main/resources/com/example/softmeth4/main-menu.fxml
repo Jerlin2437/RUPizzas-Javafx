@@ -6,6 +6,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softmeth4.MainMenuController">
    <children>
       <AnchorPane prefHeight="404.0" prefWidth="600.0">
@@ -14,10 +16,34 @@
                <font>
                   <Font size="21.0" />
                </font></Label>
-            <Button fx:id="specialtyPizza" layoutX="78.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleSpecialtyPizza" prefHeight="115.0" prefWidth="190.0" text="Specialty Pizzas" />
-            <Button fx:id="buildPizza" layoutX="333.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleBuildOwn" prefHeight="115.0" prefWidth="190.0" text="Build Your Own Pizza!" />
-            <Button fx:id="currentOrder" layoutX="78.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleCurrentOrder" prefHeight="115.0" prefWidth="190.0" text="Current Order" />
-            <Button fx:id="storeOrders" layoutX="333.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleStoreOrder" prefHeight="115.0" prefWidth="190.0" text="Store Orders" />
+            <Button fx:id="specialtyPizza" layoutX="78.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleSpecialtyPizza" prefHeight="115.0" prefWidth="190.0" text="Specialty Pizzas" >
+            <graphic>
+               <ImageView fitHeight="115" fitWidth="190">
+                  <Image url="@/Pizzasupremehoriz-1ccfa0b1732b4c128427d19ae02a422b.jpg"/>
+               </ImageView>
+            </graphic>
+            </Button>
+            <Button fx:id="buildPizza" layoutX="333.0" layoutY="98.0" mnemonicParsing="false" onAction="#handleBuildOwn" prefHeight="115.0" prefWidth="190.0" text="Build Your Own Pizza!" >
+               <graphic>
+                  <ImageView fitHeight="115" fitWidth="190">
+                     <Image url="@/mmd3ck9mu1l51.jpg"/>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="currentOrder" layoutX="78.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleCurrentOrder" prefHeight="115.0" prefWidth="190.0" text="Current Order" >
+               <graphic>
+                  <ImageView fitHeight="115" fitWidth="190">
+                     <Image url="@/istockphoto-877763466-612x612.jpg"/>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="storeOrders" layoutX="333.0" layoutY="249.0" mnemonicParsing="false" onAction="#handleStoreOrder" prefHeight="115.0" prefWidth="190.0" text="Store Orders" >
+               <graphic>
+                  <ImageView fitHeight="115" fitWidth="190">
+                     <Image url="@/download.jpg"/>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>

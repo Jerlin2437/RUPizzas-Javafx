@@ -15,6 +15,7 @@ public class MainMenuController {
     private Button specialtyPizza;
     @FXML
     private Button storeOrdersBut;
+    @FXML
     private Button storeOrders;
     private HelloApplication helloApplication;
 
