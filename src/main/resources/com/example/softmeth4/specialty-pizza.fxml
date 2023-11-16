@@ -11,19 +11,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softmeth4.SpecialtyPizzaController">
    <children>
-      <ComboBox layoutX="38.0" layoutY="35.0" prefWidth="150.0" promptText="Choose your specialty pizza..." />
-      <RadioButton layoutX="38.0" layoutY="70.0" mnemonicParsing="false" text="Small" />
-      <RadioButton layoutX="38.0" layoutY="97.0" mnemonicParsing="false" text="Medium" />
-      <RadioButton layoutX="38.0" layoutY="124.0" mnemonicParsing="false" text="Large" />
+      <ComboBox fx:id="chooseSpecialty" layoutX="38.0" layoutY="35.0" prefWidth="150.0" promptText="Choose your specialty pizza..." />
+      <RadioButton fx:id="small" layoutX="38.0" layoutY="70.0" mnemonicParsing="false" text="Small" />
+      <RadioButton fx:id="medium" layoutX="38.0" layoutY="97.0" mnemonicParsing="false" text="Medium" />
+      <RadioButton fx:id="large" layoutX="38.0" layoutY="124.0" mnemonicParsing="false" text="Large" />
       <Label layoutX="39.0" layoutY="162.0" text="Toppings" />
-      <ListView accessibleText="iouhiuouifijfhds" layoutX="38.0" layoutY="188.0" prefHeight="183.0" prefWidth="164.0" />
+      <ListView fx:id="toppings" accessibleText="iouhiuouifijfhds" layoutX="38.0" layoutY="188.0" prefHeight="183.0" prefWidth="164.0" />
       <Label layoutX="243.0" layoutY="40.0" text="Sauce" />
-      <RadioButton layoutX="243.0" layoutY="70.0" mnemonicParsing="false" text="Tomato" />
-      <RadioButton layoutX="244.0" layoutY="97.0" mnemonicParsing="false" text="Alfredo" />
-      <CheckBox layoutX="329.0" layoutY="70.0" mnemonicParsing="false" text="Extra Sauce" />
-      <CheckBox layoutX="329.0" layoutY="97.0" mnemonicParsing="false" text="Extra Cheese" />
+      <RadioButton fx:id="tomato" layoutX="243.0" layoutY="70.0" mnemonicParsing="false" text="Tomato" />
+      <RadioButton fx:id="alfredo" layoutX="244.0" layoutY="97.0" mnemonicParsing="false" text="Alfredo" />
+      <CheckBox fx:id="extraSauce" layoutX="329.0" layoutY="70.0" mnemonicParsing="false" text="Extra Sauce" />
+      <CheckBox fx:id="extraCheese" layoutX="329.0" layoutY="97.0" mnemonicParsing="false" text="Extra Cheese" />
       <Label layoutX="243.0" layoutY="162.0" text="Price: $" />
-      <TextField layoutX="293.0" layoutY="158.0" />
-      <Button layoutX="465.0" layoutY="158.0" mnemonicParsing="false" text="Add to order!" />
+      <TextField fx:id="price" layoutX="293.0" layoutY="158.0" />
+      <Button fx:id="addToOrder" layoutX="465.0" layoutY="158.0" mnemonicParsing="false" text="Add to order!" />
    </children>
 </AnchorPane>

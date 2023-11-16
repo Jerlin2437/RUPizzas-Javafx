@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) {
         primaryStage = stage;
-        showScreen("main-menu.fxml", "Main Menu", 640, 480);
+        showScreen("main-menu.fxml", "J&J Pizzeria <Main Menu>", 640, 480);
     }
 
     public static void showScreen(String fxmlFile, String title, int width, int height) {
@@ -34,8 +34,23 @@ public class HelloApplication extends Application {
             primaryStage.setTitle(title);
             primaryStage.setScene(scene);
             primaryStage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public static void openSpecialty(){
+        showScreen("specialty-pizza.fxml", "Order specialty pizzas!", 640, 480);
+    }
+    public static void openBuildOwn(){
+        showScreen("build-own.fxml", "Build your own pizza!", 640, 480);
+    }
+    public static void openCurrentOrder(){
+        showScreen("current-order.fxml", "Order Detail", 640, 480);
+    }
+    public static void openStoreOrder(){
+        showScreen("store-order.fxml", "Store Orders", 640, 480);
+    }
+
 }
