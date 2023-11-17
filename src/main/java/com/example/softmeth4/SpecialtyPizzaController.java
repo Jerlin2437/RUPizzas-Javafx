@@ -3,6 +3,7 @@ package com.example.softmeth4;
 import com.example.softmeth4.businesslogic.Order;
 import com.example.softmeth4.businesslogic.PizzaMaker;
 import com.example.softmeth4.businesslogic.StoreOrders;
+import com.example.softmeth4.enums.Size;
 import com.example.softmeth4.pizzas.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -115,25 +116,31 @@ public class SpecialtyPizzaController{
         }
     }
 
-    private double calculatePrice(Order order){
+    private double calculatePrice(){
         double basePrice = 0.0;
 
         switch(pizzaType){
             case "Deluxe":
-                basePrice += Deluxe.price();
+                Deluxe deluxePizza = new Deluxe(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += deluxePizza.price();
                 break;
             case "Supreme":
-                basePrice += Supreme.price();
+                Supreme supremePizza = new Supreme(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += supremePizza.price();
                 break;
             case "Meatzza":
-                basePrice += Meatzza.price();
+                Meatzza meatzzaPizza = new Meatzza(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += meatzzaPizza.price();
                 break;
             case "Seafood":
-                basePrice += Seafood.price();
-                break;
+                Seafood seafoodPizza = new Seafood(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += seafoodPizza.price();                break;
             case "Pepperoni":
-                basePrice += Pepperoni.price();
+                Pepperoni pepperoniPizza = new Pepperoni(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += pepperoniPizza.price();
                 break;
+            default:
+                System.out.println("Invalid pizza type: " + pizzaType);
         }
         //need calculate extraSauce and extraCheese? should we add into price() each pizza class
         return basePrice;
