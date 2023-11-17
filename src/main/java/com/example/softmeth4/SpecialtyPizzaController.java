@@ -3,8 +3,7 @@ package com.example.softmeth4;
 import com.example.softmeth4.businesslogic.Order;
 import com.example.softmeth4.businesslogic.PizzaMaker;
 import com.example.softmeth4.businesslogic.StoreOrders;
-import com.example.softmeth4.pizzas.Deluxe;
-import com.example.softmeth4.pizzas.Pizza;
+import com.example.softmeth4.pizzas.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -117,7 +116,27 @@ public class SpecialtyPizzaController{
     }
 
     private double calculatePrice(Order order){
-        return 0.0;
+        double basePrice = 0.0;
+
+        switch(pizzaType){
+            case "Deluxe":
+                basePrice += Deluxe.price();
+                break;
+            case "Supreme":
+                basePrice += Supreme.price();
+                break;
+            case "Meatzza":
+                basePrice += Meatzza.price();
+                break;
+            case "Seafood":
+                basePrice += Seafood.price();
+                break;
+            case "Pepperoni":
+                basePrice += Pepperoni.price();
+                break;
+        }
+        //need calculate extraSauce and extraCheese? should we add into price() each pizza class
+        return basePrice;
     }
 
     private void updateInterface(){
