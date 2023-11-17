@@ -13,10 +13,13 @@ import javafx.scene.control.*;
 
 import java.util.ResourceBundle;
 
+import static java.lang.Math.round;
+
 public class SpecialtyPizzaController{
     public TextField sauceType;
     private Order order;
     private StoreOrders storeOrders;
+    private Pizza pizza;
     private String pizzaType;
     private String size;
     private String hasExtraSauce;
@@ -46,8 +49,7 @@ public class SpecialtyPizzaController{
 
     @FXML
     private ToggleGroup specialtyRadioButtonGroup;
-    @FXML
-    private ToggleGroup specialtySauceButtonGroup;
+
     public SpecialtyPizzaController(){
         order = HelloApplication.getOrder();
         storeOrders = HelloApplication.getStoreOrders();
@@ -55,11 +57,11 @@ public class SpecialtyPizzaController{
 
     @FXML
     public void initialize(){
+
         chooseSpecialty.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         chooseSpecialty.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             //clear existing toppings in the ListView
             toppings.getItems().clear();
-
             if (newValue != null) {
                 if (newValue.equals("Deluxe")) {
                     sauceType.setText("Tomato");
@@ -77,14 +79,32 @@ public class SpecialtyPizzaController{
                     sauceType.setText("Tomato");
                     toppings.getItems().addAll("Pepperoni");
                 }
+                pizza = pizzaParse();
+                String formattedValue = String.format("%.2f",pizza.price());
+                price.setText(formattedValue);
+            }
+        });
+        specialtyRadioButtonGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) ->{
+            if (chooseSpecialty.getValue() != null) {
+                pizza = pizzaParse();
+                String formattedValue = String.format("%.2f",pizza.price());
+                price.setText(formattedValue);
             }
         });
     }
 
+    private Pizza pizzaParse(){
+        Toggle selectedToggle = specialtyRadioButtonGroup.getSelectedToggle();
+        RadioButton selectedRadioButton = (RadioButton) selectedToggle;
+        String size = selectedRadioButton.getText();
+        String pizzaType = chooseSpecialty.getValue();
+        return PizzaMaker.createPizza(pizzaType +" " + size + " false false");
+    }
+
     //receive order, parse order, select necessary buttons and inputs on the gui,
     //calculate price and whatnot, and send back to helloapp to add to storeorders?
-    public void processOrder(){
-        updateInterface();
+//    public void processOrder(){
+//        updateInterface();
 
 //        String pizzaType = createPizzaFromInput();
 //        Pizza pizza = PizzaMaker.createPizza(pizzaType);
@@ -98,7 +118,7 @@ public class SpecialtyPizzaController{
 //
 //        //clears order for next order
 //        order = new Order();
-    }
+   // }
     //gonna need a different parseOrder for BYO...if parts.length > 4
     private void parseOrder(String orderString){
         String[] parts = orderString.split("\\s+");
@@ -144,49 +164,49 @@ public class SpecialtyPizzaController{
         return basePrice;
     }
 
-    private void updateInterface(){
-        toppings.getItems().clear();
-        specialtySauceButtonGroup.getToggles().clear();
-        specialtyRadioButtonGroup.getToggles().clear();
-
-        if (pizzaType != null) {
-            if (pizzaType.equals("Deluxe")) {
-                sauceType.setText("Tomato");
-                toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
-            } else if (pizzaType.equals("Supreme")) {
-                sauceType.setText("Tomato");
-                toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom", "Ham", "Black Olive");
-            } else if (pizzaType.equals("Meatzza")) {
-                sauceType.setText("Tomato");
-                toppings.getItems().addAll("Sausage", "Beef", "Ham", "Pepperoni");
-            } else if (pizzaType.equals("Seafood")) {
-                sauceType.setText("Alfredo");
-                toppings.getItems().addAll("Shrimp", "Squid", "Crab Meat");
-            } else if (pizzaType.equals("Pepperoni")) {
-                sauceType.setText("Tomato");
-                toppings.getItems().addAll("Pepperoni");
-            }
-        }
-
-        if (size != null){
-            switch (size) {
-                case "SMALL" -> specialtyRadioButtonGroup.selectToggle(small);
-                case "MEDIUM" -> specialtyRadioButtonGroup.selectToggle(medium);
-                case "LARGE" -> specialtyRadioButtonGroup.selectToggle(large);
-                default -> System.out.println("Error");
-            }
-        }
-
-        if (hasExtraSauce.equals("true")){
-            extraSauce.setSelected(true);
-        }else
-            extraSauce.setSelected(false);
-
-        if (hasExtraCheese.equals("true"))
-            extraCheese.setSelected(true);
-        else
-            extraCheese.setSelected(false);
-    }
+//    private void updateInterface(){
+//        toppings.getItems().clear();
+//        specialtySauceButtonGroup.getToggles().clear();
+//        specialtyRadioButtonGroup.getToggles().clear();
+//
+//        if (pizzaType != null) {
+//            if (pizzaType.equals("Deluxe")) {
+//                sauceType.setText("Tomato");
+//                toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
+//            } else if (pizzaType.equals("Supreme")) {
+//                sauceType.setText("Tomato");
+//                toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom", "Ham", "Black Olive");
+//            } else if (pizzaType.equals("Meatzza")) {
+//                sauceType.setText("Tomato");
+//                toppings.getItems().addAll("Sausage", "Beef", "Ham", "Pepperoni");
+//            } else if (pizzaType.equals("Seafood")) {
+//                sauceType.setText("Alfredo");
+//                toppings.getItems().addAll("Shrimp", "Squid", "Crab Meat");
+//            } else if (pizzaType.equals("Pepperoni")) {
+//                sauceType.setText("Tomato");
+//                toppings.getItems().addAll("Pepperoni");
+//            }
+//        }
+//
+//        if (size != null){
+//            switch (size) {
+//                case "SMALL" -> specialtyRadioButtonGroup.selectToggle(small);
+//                case "MEDIUM" -> specialtyRadioButtonGroup.selectToggle(medium);
+//                case "LARGE" -> specialtyRadioButtonGroup.selectToggle(large);
+//                default -> System.out.println("Error");
+//            }
+//        }
+//
+//        if (hasExtraSauce.equals("true")){
+//            extraSauce.setSelected(true);
+//        }else
+//            extraSauce.setSelected(false);
+//
+//        if (hasExtraCheese.equals("true"))
+//            extraCheese.setSelected(true);
+//        else
+//            extraCheese.setSelected(false);
+//    }
 
 
 

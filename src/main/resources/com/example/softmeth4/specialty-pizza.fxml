@@ -13,7 +13,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softmeth4.SpecialtyPizzaController">
    <children>
       <ComboBox fx:id="chooseSpecialty" layoutX="38.0" layoutY="35.0" prefWidth="150.0" promptText="Choose your specialty pizza..." />
-      <RadioButton fx:id="small" layoutX="38.0" layoutY="70.0" mnemonicParsing="false" text="Small">
+      <RadioButton fx:id="small" layoutX="38.0" layoutY="70.0" mnemonicParsing="false" text="Small" selected="true">
          <toggleGroup>
             <ToggleGroup fx:id="specialtyRadioButtonGroup" />
          </toggleGroup></RadioButton>

@@ -23,6 +23,8 @@ public class PizzaMaker {
             return new Meatzza(size, extraSauce, extraCheese);
         else if (Objects.equals(parsedPizza[0], "Deluxe"))
             return new Deluxe(size, extraSauce, extraCheese);
+        else if (Objects.equals(parsedPizza[0],"Pepperoni"))
+            return new Pepperoni(size, extraSauce, extraCheese);
         else if (Objects.equals(parsedPizza[0], "BYO")){
             Sauce sauce = Sauce.fromString(parsedPizza[4]);
             ArrayList<Topping> toppings = new ArrayList<>();
