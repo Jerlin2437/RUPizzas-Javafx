@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import java.util.ResourceBundle;
 
 public class SpecialtyPizzaController{
+    public TextField sauceType;
     private Order order;
     private StoreOrders storeOrders;
     private String pizzaType;
@@ -21,10 +22,7 @@ public class SpecialtyPizzaController{
     private String hasExtraSauce;
     private String hasExtraCheese;
 
-    @FXML
-    private RadioButton tomato;
-    @FXML
-    private RadioButton alfredo;
+
     @FXML
     private CheckBox extraCheese;
     @FXML
@@ -64,19 +62,19 @@ public class SpecialtyPizzaController{
 
             if (newValue != null) {
                 if (newValue.equals("Deluxe")) {
-                    specialtySauceButtonGroup.selectToggle(tomato);
+                    sauceType.setText("Tomato");
                     toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
                 } else if (newValue.equals("Supreme")) {
-                    specialtySauceButtonGroup.selectToggle(tomato);
+                    sauceType.setText("Tomato");
                     toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom", "Ham", "Black Olive");
                 } else if (newValue.equals("Meatzza")) {
-                    specialtySauceButtonGroup.selectToggle(tomato);
+                    sauceType.setText("Tomato");
                     toppings.getItems().addAll("Sausage", "Beef", "Ham", "Pepperoni");
                 } else if (newValue.equals("Seafood")) {
-                    specialtySauceButtonGroup.selectToggle(alfredo);
+                    sauceType.setText("Alfredo");
                     toppings.getItems().addAll("Shrimp", "Squid", "Crab Meat");
                 } else if (newValue.equals("Pepperoni")) {
-                    specialtySauceButtonGroup.selectToggle(tomato);
+                    sauceType.setText("Tomato");
                     toppings.getItems().addAll("Pepperoni");
                 }
             }
@@ -127,19 +125,19 @@ public class SpecialtyPizzaController{
 
         if (pizzaType != null) {
             if (pizzaType.equals("Deluxe")) {
-                specialtySauceButtonGroup.selectToggle(tomato);
+                sauceType.setText("Tomato");
                 toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
             } else if (pizzaType.equals("Supreme")) {
-                specialtySauceButtonGroup.selectToggle(tomato);
+                sauceType.setText("Tomato");
                 toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom", "Ham", "Black Olive");
             } else if (pizzaType.equals("Meatzza")) {
-                specialtySauceButtonGroup.selectToggle(tomato);
+                sauceType.setText("Tomato");
                 toppings.getItems().addAll("Sausage", "Beef", "Ham", "Pepperoni");
             } else if (pizzaType.equals("Seafood")) {
-                specialtySauceButtonGroup.selectToggle(alfredo);
+                sauceType.setText("Alfredo");
                 toppings.getItems().addAll("Shrimp", "Squid", "Crab Meat");
             } else if (pizzaType.equals("Pepperoni")) {
-                specialtySauceButtonGroup.selectToggle(tomato);
+                sauceType.setText("Tomato");
                 toppings.getItems().addAll("Pepperoni");
             }
         }
