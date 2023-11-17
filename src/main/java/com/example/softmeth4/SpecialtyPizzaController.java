@@ -3,8 +3,8 @@ package com.example.softmeth4;
 import com.example.softmeth4.businesslogic.Order;
 import com.example.softmeth4.businesslogic.PizzaMaker;
 import com.example.softmeth4.businesslogic.StoreOrders;
-import com.example.softmeth4.pizzas.Deluxe;
-import com.example.softmeth4.pizzas.Pizza;
+import com.example.softmeth4.enums.Size;
+import com.example.softmeth4.pizzas.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -114,8 +114,34 @@ public class SpecialtyPizzaController{
         }
     }
 
-    private double calculatePrice(Order order){
-        return 0.0;
+    private double calculatePrice(){
+        double basePrice = 0.0;
+
+        switch(pizzaType){
+            case "Deluxe":
+                Deluxe deluxePizza = new Deluxe(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += deluxePizza.price();
+                break;
+            case "Supreme":
+                Supreme supremePizza = new Supreme(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += supremePizza.price();
+                break;
+            case "Meatzza":
+                Meatzza meatzzaPizza = new Meatzza(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += meatzzaPizza.price();
+                break;
+            case "Seafood":
+                Seafood seafoodPizza = new Seafood(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += seafoodPizza.price();                break;
+            case "Pepperoni":
+                Pepperoni pepperoniPizza = new Pepperoni(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
+                basePrice += pepperoniPizza.price();
+                break;
+            default:
+                System.out.println("Invalid pizza type: " + pizzaType);
+        }
+        //need calculate extraSauce and extraCheese? should we add into price() each pizza class
+        return basePrice;
     }
 
     private void updateInterface(){
