@@ -142,15 +142,19 @@ public class BuildOwnController implements Initializable {
 
         private void addToOrder() {
             if (sizeComboBox.getValue() != null) {
-                if (buildExtraCheese.isSelected())
-                    pizza.setExtraCheese(true);
-                if (buildExtraSauce.isSelected())
-                    pizza.setExtraSauce(true);
-                order.addPizza(pizza);
-                pizza = null;
-                showSuccessPopup();
+                if (toppingCount >= 3){
+                    if (buildExtraCheese.isSelected())
+                        pizza.setExtraCheese(true);
+                    if (buildExtraSauce.isSelected())
+                        pizza.setExtraSauce(true);
+                    order.addPizza(pizza);
+                    pizza = null;
+                    showSuccessPopup();
+                } else {
+                    showFailurePopup1();
+                }
             } else
-                showFailurePopup();
+                showFailurePopup2();
         }
 
         private void showSuccessPopup() {
@@ -162,7 +166,15 @@ public class BuildOwnController implements Initializable {
             alert.showAndWait();
         }
 
-        private void showFailurePopup() {
+        private void showFailurePopup1() {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pizza Order Unsuccessful");
+            alert.setContentText("You need at least 3 toppings.");
+            alert.initOwner(sizeComboBox.getScene().getWindow());
+            alert.showAndWait();
+        }
+
+        private void showFailurePopup2() {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Pizza Order Unsuccessful");
             alert.initOwner(sizeComboBox.getScene().getWindow());
