@@ -35,6 +35,14 @@ public abstract class Pizza {
 
     protected abstract String getPizzaType();
 
+    public void setExtraSauce(boolean extraSauce) {
+        this.extraSauce = extraSauce;
+    }
+
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+    }
+
     private String toppingsToString() {
         if (toppings.isEmpty()) {
             return "None";
@@ -48,4 +56,5 @@ public abstract class Pizza {
             return toppingsString.toString();
         }
     }
+
 }

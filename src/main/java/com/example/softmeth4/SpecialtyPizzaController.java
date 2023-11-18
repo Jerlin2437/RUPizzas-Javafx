@@ -57,7 +57,6 @@ public class SpecialtyPizzaController{
 
     @FXML
     public void initialize(){
-
         chooseSpecialty.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         chooseSpecialty.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             //clear existing toppings in the ListView
@@ -91,6 +90,7 @@ public class SpecialtyPizzaController{
                 price.setText(formattedValue);
             }
         });
+        addToOrder.setOnAction(new addToOrderHandler());
     }
 
     private Pizza pizzaParse(){
@@ -100,115 +100,38 @@ public class SpecialtyPizzaController{
         String pizzaType = chooseSpecialty.getValue();
         return PizzaMaker.createPizza(pizzaType +" " + size + " false false");
     }
-
-    //receive order, parse order, select necessary buttons and inputs on the gui,
-    //calculate price and whatnot, and send back to helloapp to add to storeorders?
-//    public void processOrder(){
-//        updateInterface();
-
-//        String pizzaType = createPizzaFromInput();
-//        Pizza pizza = PizzaMaker.createPizza(pizzaType);
-//
-//        order.addPizza(pizza);
-
-//        double calculatedPrice = calculatePrice();
-//        price.setText(String.valueOf(calculatedPrice));
-
-//        storeOrders.addOrder(order);
-//
-//        //clears order for next order
-//        order = new Order();
-   // }
-    //gonna need a different parseOrder for BYO...if parts.length > 4
-    private void parseOrder(String orderString){
-        String[] parts = orderString.split("\\s+");
-
-        if (parts.length == 4){
-            pizzaType = parts[0];
-            size = parts[1];
-            hasExtraSauce = String.valueOf(Boolean.parseBoolean(parts[2]));
-            hasExtraCheese = String.valueOf(Boolean.parseBoolean(parts[3]));
-        } else{
-            //put try catch exception here so it handles exception properly
-            System.out.println("Invalid order format: " + orderString);
+    public class addToOrderHandler implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            addToOrder();
+        }
+        private void addToOrder(){
+            if (chooseSpecialty.getValue() != null){
+                if(extraCheese.isSelected())
+                    pizza.setExtraCheese(true);
+                if (extraSauce.isSelected())
+                    pizza.setExtraSauce(true);
+                order.addPizza(pizza);
+                pizza = null;
+                showSuccessPopup();
+            } else
+                showFailurePopup();
+        }
+        private void showSuccessPopup() {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pizza Order Successful");
+            alert.setHeaderText(null);
+            alert.setContentText("Your pizza order has been added successfully!");
+            alert.initOwner(chooseSpecialty.getScene().getWindow());
+            alert.showAndWait();
+        }
+        private void showFailurePopup() {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pizza Order Unsuccessful");
+            alert.setHeaderText(null);
+            alert.setContentText("You did not select a pizza!");
+            alert.initOwner(chooseSpecialty.getScene().getWindow());
+            alert.showAndWait();
         }
     }
-
-    private double calculatePrice(){
-        double basePrice = 0.0;
-
-        switch(pizzaType){
-            case "Deluxe":
-                Deluxe deluxePizza = new Deluxe(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
-                basePrice += deluxePizza.price();
-                break;
-            case "Supreme":
-                Supreme supremePizza = new Supreme(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
-                basePrice += supremePizza.price();
-                break;
-            case "Meatzza":
-                Meatzza meatzzaPizza = new Meatzza(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
-                basePrice += meatzzaPizza.price();
-                break;
-            case "Seafood":
-                Seafood seafoodPizza = new Seafood(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
-                basePrice += seafoodPizza.price();                break;
-            case "Pepperoni":
-                Pepperoni pepperoniPizza = new Pepperoni(Size.valueOf(size), Boolean.parseBoolean(hasExtraSauce), Boolean.parseBoolean(hasExtraCheese));
-                basePrice += pepperoniPizza.price();
-                break;
-            default:
-                System.out.println("Invalid pizza type: " + pizzaType);
-        }
-        //need calculate extraSauce and extraCheese? should we add into price() each pizza class
-        return basePrice;
-    }
-
-//    private void updateInterface(){
-//        toppings.getItems().clear();
-//        specialtySauceButtonGroup.getToggles().clear();
-//        specialtyRadioButtonGroup.getToggles().clear();
-//
-//        if (pizzaType != null) {
-//            if (pizzaType.equals("Deluxe")) {
-//                sauceType.setText("Tomato");
-//                toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
-//            } else if (pizzaType.equals("Supreme")) {
-//                sauceType.setText("Tomato");
-//                toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom", "Ham", "Black Olive");
-//            } else if (pizzaType.equals("Meatzza")) {
-//                sauceType.setText("Tomato");
-//                toppings.getItems().addAll("Sausage", "Beef", "Ham", "Pepperoni");
-//            } else if (pizzaType.equals("Seafood")) {
-//                sauceType.setText("Alfredo");
-//                toppings.getItems().addAll("Shrimp", "Squid", "Crab Meat");
-//            } else if (pizzaType.equals("Pepperoni")) {
-//                sauceType.setText("Tomato");
-//                toppings.getItems().addAll("Pepperoni");
-//            }
-//        }
-//
-//        if (size != null){
-//            switch (size) {
-//                case "SMALL" -> specialtyRadioButtonGroup.selectToggle(small);
-//                case "MEDIUM" -> specialtyRadioButtonGroup.selectToggle(medium);
-//                case "LARGE" -> specialtyRadioButtonGroup.selectToggle(large);
-//                default -> System.out.println("Error");
-//            }
-//        }
-//
-//        if (hasExtraSauce.equals("true")){
-//            extraSauce.setSelected(true);
-//        }else
-//            extraSauce.setSelected(false);
-//
-//        if (hasExtraCheese.equals("true"))
-//            extraCheese.setSelected(true);
-//        else
-//            extraCheese.setSelected(false);
-//    }
-
-
-
-
 }
