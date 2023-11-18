@@ -43,26 +43,35 @@ public class BuildOwnController implements Initializable {
 
     @FXML
     private ToggleGroup sauceRadioButton;
-    public BuildOwnController(){
+
+    public BuildOwnController() {
         order = HelloApplication.getOrder();
         storeOrders = HelloApplication.getStoreOrders();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        sizeComboBox.valueProperty().addListener((observable, oldValue, newValue) ->{
+        sizeComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             pizza = pizzaParse();
             updatePizzaPrice();
         });
-
         notSelectedToppings.getItems().addAll(Topping.values());
-        addTopping.setOnAction(event -> addToppings());
-        removeTopping.setOnAction(event -> removeToppings());
+        addTopping.setOnAction(event -> {
+            addToppings();
+            pizza = pizzaParse();
+            updatePizzaPrice();
+        });
+        removeTopping.setOnAction(event -> {
+            removeToppings();
+            pizza = pizzaParse();
+            updatePizzaPrice();
+        });
+        buildAddToOrder.setOnAction(new buildAddToOrderHandler());
     }
 
-    private void updatePizzaPrice(){
-        if (pizza != null){
-            if (toppingCount > 3){
+    private void updatePizzaPrice() {
+        if (pizza != null) {
+            if (toppingCount > 3) {
                 //base price without toppings
                 double basePrice = pizza.price();
                 //if more than 3 toppings, add $1.49 for each additional topping after 3
@@ -70,14 +79,14 @@ public class BuildOwnController implements Initializable {
                 double totalPrice = basePrice + additionalToppingPrice;
                 String formattedValue = String.format("%.2f", totalPrice);
                 buildPrice.setText(formattedValue);
-            } else{
+            } else {
                 String formattedValue = String.format("%.2f", pizza.price());
                 buildPrice.setText(formattedValue);
             }
         }
     }
 
-    private Pizza pizzaParse(){
+    private Pizza pizzaParse() {
         Toggle selectedToggle = sauceRadioButton.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
         String sauce = selectedRadioButton.getText();
@@ -92,7 +101,7 @@ public class BuildOwnController implements Initializable {
         }
 
         //size, extraSauce, extraCheese, sauce,toppings
-        return PizzaMaker.createPizza(pizzaType +" " + size + " false false " + sauce + " " + allToppings.toString().trim());
+        return PizzaMaker.createPizza(pizzaType + " " + size + " false false " + sauce + " " + allToppings.toString().trim());
     }
 
     //need at least 3 toppings, add this requirement
@@ -100,24 +109,24 @@ public class BuildOwnController implements Initializable {
     private void addToppings() {
         // Get the selected item from notSelectedToppings
         Topping selectedTopping = notSelectedToppings.getSelectionModel().getSelectedItem();
-        if (selectedToppings.getItems().size() >= 7){
+        if (selectedToppings.getItems().size() >= 7) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Too many toppings!");
             alert.setHeaderText(null);
             alert.setContentText("You can only have a max of 7 toppings!");
             alert.initOwner(addTopping.getScene().getWindow());
             alert.showAndWait();
-        }
-        else if (selectedTopping != null) {
+        } else if (selectedTopping != null) {
             notSelectedToppings.getItems().remove(selectedTopping);
             selectedToppings.getItems().add(selectedTopping);
             toppingCount++;
             updatePizzaPrice();
         }
     }
-    private void removeToppings(){
+
+    private void removeToppings() {
         Topping selectedTopping = selectedToppings.getSelectionModel().getSelectedItem();
-        if (selectedTopping != null){
+        if (selectedTopping != null) {
             selectedToppings.getItems().remove(selectedTopping);
             notSelectedToppings.getItems().add(selectedTopping);
             toppingCount--;
@@ -125,40 +134,41 @@ public class BuildOwnController implements Initializable {
         }
     }
 
-//    public class addToOrderHandler implements EventHandler<ActionEvent> {
-//        @Override
-//        public void handle(ActionEvent actionEvent) {
-//            addToOrder();
-//        }
-//        private void addToOrder(){
-//            if (chooseSpecialty.getValue() != null){
-//                if(extraCheese.isSelected())
-//                    pizza.setExtraCheese(true);
-//                if (extraSauce.isSelected())
-//                    pizza.setExtraSauce(true);
-//                order.addPizza(pizza);
-//                pizza = null;
-//                showSuccessPopup();
-//            } else
-//                showFailurePopup();
-//        }
-//        private void showSuccessPopup() {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Pizza Order Successful");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Your pizza order has been added successfully!");
-//            alert.initOwner(chooseSpecialty.getScene().getWindow());
-//            alert.showAndWait();
-//        }
-//        private void showFailurePopup() {
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Pizza Order Unsuccessful");
-//            alert.setHeaderText(null);
-//            alert.setContentText("You did not select a pizza!");
-//            alert.initOwner(chooseSpecialty.getScene().getWindow());
-//            alert.showAndWait();
-//        }
+    public class buildAddToOrderHandler implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            addToOrder();
+        }
+
+        private void addToOrder() {
+            if (sizeComboBox.getValue() != null) {
+                if (buildExtraCheese.isSelected())
+                    pizza.setExtraCheese(true);
+                if (buildExtraSauce.isSelected())
+                    pizza.setExtraSauce(true);
+                order.addPizza(pizza);
+                pizza = null;
+                showSuccessPopup();
+            } else
+                showFailurePopup();
+        }
+
+        private void showSuccessPopup() {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pizza Order Successful");
+            alert.setHeaderText(null);
+            alert.setContentText("Your pizza order has been added successfully!");
+            alert.initOwner(sizeComboBox.getScene().getWindow());
+            alert.showAndWait();
+        }
+
+        private void showFailurePopup() {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pizza Order Unsuccessful");
+            alert.initOwner(sizeComboBox.getScene().getWindow());
+            alert.showAndWait();
+        }
 
 
-
+    }
 }
