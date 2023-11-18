@@ -11,11 +11,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.net.URL;
 import java.util.ResourceBundle;
 
 import static java.lang.Math.round;
 
-public class SpecialtyPizzaController{
+public class SpecialtyPizzaController implements Initializable {
     public TextField sauceType;
     private Order order;
     private StoreOrders storeOrders;
@@ -54,9 +55,8 @@ public class SpecialtyPizzaController{
         order = HelloApplication.getOrder();
         storeOrders = HelloApplication.getStoreOrders();
     }
-
-    @FXML
-    public void initialize(){
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
         chooseSpecialty.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         chooseSpecialty.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             //clear existing toppings in the ListView
@@ -92,7 +92,6 @@ public class SpecialtyPizzaController{
         });
         addToOrder.setOnAction(new addToOrderHandler());
     }
-
     private Pizza pizzaParse(){
         Toggle selectedToggle = specialtyRadioButtonGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
@@ -100,6 +99,9 @@ public class SpecialtyPizzaController{
         String pizzaType = chooseSpecialty.getValue();
         return PizzaMaker.createPizza(pizzaType +" " + size + " false false");
     }
+
+
+
     public class addToOrderHandler implements EventHandler<ActionEvent>{
         @Override
         public void handle(ActionEvent actionEvent) {
