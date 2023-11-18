@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -7,15 +9,13 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softmeth4.BuildOwnController">
    <children>
       <Label layoutX="32.0" layoutY="22.0" text="Pizza Size" />
-      <ComboBox fx:id="sizeComboBox" value="Small" layoutX="32.0" layoutY="46.0" prefWidth="150.0">
+      <ComboBox fx:id="sizeComboBox" layoutX="32.0" layoutY="46.0" prefWidth="150.0" value="Small">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="Small" />
@@ -26,14 +26,14 @@
       </ComboBox>
 
       <Label layoutX="32.0" layoutY="81.0" text="Sauce" />
-      <RadioButton fx:id="tomato" selected="true" layoutX="32.0" layoutY="106.0" mnemonicParsing="false" text="Tomato Sauce">
+      <RadioButton fx:id="tomato" layoutX="32.0" layoutY="106.0" mnemonicParsing="false" selected="true" text="Tomato">
          <toggleGroup>
             <ToggleGroup fx:id="sauceRadioButton" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="alfredo" toggleGroup="$sauceRadioButton" layoutX="32.0" layoutY="132.0" mnemonicParsing="false" text="Alfredo Sauce" />
-      <CheckBox layoutX="153.0" layoutY="106.0" mnemonicParsing="false" text="Extra Sauce" />
-      <CheckBox layoutX="153.0" layoutY="132.0" mnemonicParsing="false" text="Extra Cheese" />
+      <RadioButton fx:id="alfredo" layoutX="32.0" layoutY="132.0" mnemonicParsing="false" text="Alfredo" toggleGroup="$sauceRadioButton" />
+      <CheckBox fx:id="buildExtraSauce" layoutX="153.0" layoutY="106.0" mnemonicParsing="false" text="Extra Sauce" />
+      <CheckBox fx:id="buildExtraCheese" layoutX="153.0" layoutY="132.0" mnemonicParsing="false" text="Extra Cheese" />
       <Label layoutX="34.0" layoutY="168.0" text="Additional Toppings" />
       <ListView fx:id="notSelectedToppings" layoutX="32.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="addTopping" layoutX="260.0" layoutY="225.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="81.0" text="Add &gt;&gt;" />
@@ -41,7 +41,7 @@
       <Label layoutX="373.0" layoutY="168.0" text="Selected Toppings" />
       <ListView fx:id="selectedToppings" layoutX="373.0" layoutY="186.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="321.0" layoutY="73.0" text="Price: $" />
-      <TextField editable="false" layoutX="373.0" layoutY="68.0" prefHeight="26.0" prefWidth="200.0" />
-      <Button layoutX="431.0" layoutY="102.0" mnemonicParsing="false" text="Add to order!" />
+      <TextField fx:id="buildPrice" editable="false" layoutX="373.0" layoutY="68.0" prefHeight="26.0" prefWidth="200.0" />
+      <Button fx:id="buildAddToOrder" layoutX="431.0" layoutY="102.0" mnemonicParsing="false" text="Add to order!" />
    </children>
 </AnchorPane>
