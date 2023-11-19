@@ -69,13 +69,14 @@ public class BuildOwnController implements Initializable {
         buildAddToOrder.setOnAction(new buildAddToOrderHandler());
     }
 
+    //need to fix for magic numbers
     private void updatePizzaPrice() {
         if (pizza != null) {
             if (toppingCount > 3) {
                 //base price without toppings
                 double basePrice = pizza.price();
                 //if more than 3 toppings, add $1.49 for each additional topping after 3
-                double additionalToppingPrice = Math.max(0, toppingCount - 3) * 1.49;
+                double additionalToppingPrice = Math.max(0, toppingCount - 7) * 1.49;
                 double totalPrice = basePrice + additionalToppingPrice;
                 String formattedValue = String.format("%.2f", totalPrice);
                 buildPrice.setText(formattedValue);
