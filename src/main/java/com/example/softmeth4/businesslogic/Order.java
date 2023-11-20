@@ -31,7 +31,7 @@ public class Order {
         List<String> pizzaDetails = new ArrayList<>();
         for (int i = 0; i < pizzas.size(); i++) {
             Pizza pizza = pizzas.get(i);
-            pizzaDetails.add("Pizza " + (i + 1) + ": " + pizza.toString() + ("\n"));
+            pizzaDetails.add("Pizza " + (i + 1) + ": \n" + pizza.toString() + ("\n"));
         }
         return pizzaDetails;
     }

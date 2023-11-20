@@ -21,6 +21,7 @@ public class BuildOwnController implements Initializable {
     private StoreOrders storeOrders;
     private Pizza pizza;
     private int toppingCount;
+    private double additionalToppingPrice;
 
     @FXML
     private CheckBox buildExtraCheese;
@@ -67,21 +68,40 @@ public class BuildOwnController implements Initializable {
             updatePizzaPrice();
         });
         buildAddToOrder.setOnAction(new buildAddToOrderHandler());
+        buildExtraSauce.setOnAction(event -> {
+            pizza = pizzaParse();
+            updatePizzaPrice();
+        });
+        buildExtraCheese.setOnAction(event -> {
+            pizza = pizzaParse();
+            updatePizzaPrice();
+        });
     }
 
     //need to fix for magic numbers
     private void updatePizzaPrice() {
         if (pizza != null) {
-            if (toppingCount > 3) {
+            if (toppingCount >= 3) {
+                pizza = pizzaParse();
                 //base price without toppings
                 double basePrice = pizza.price();
                 //if more than 3 toppings, add $1.49 for each additional topping after 3
-                double additionalToppingPrice = Math.max(0, toppingCount - 7) * 1.49;
+                additionalToppingPrice = Math.max(0, toppingCount - 7) * 1.49;
+
+                if (buildExtraSauce.isSelected()){
+                    additionalToppingPrice += 1.0;
+                }
+
+                if (buildExtraCheese.isSelected()){
+                    additionalToppingPrice += 1.0;
+                }
+
                 double totalPrice = basePrice + additionalToppingPrice;
                 String formattedValue = String.format("%.2f", totalPrice);
                 buildPrice.setText(formattedValue);
             } else {
-                String formattedValue = String.format("%.2f", pizza.price());
+                double totalPrice = pizza.price() + additionalToppingPrice;
+                String formattedValue = String.format("%.2f", totalPrice);
                 buildPrice.setText(formattedValue);
             }
         }

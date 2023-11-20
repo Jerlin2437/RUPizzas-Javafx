@@ -19,7 +19,14 @@ public class Meatzza extends Pizza{
     }
     @Override
     public double price() {
-        return 16.99 + size.getPrice();
+        double extraCost = 0.0;
+        if (hasExtraSauce(extraSauce)){
+            extraCost += 1.0;
+        }
+        if (hasExtraCheese(extraCheese)){
+            extraCost += 1.0;
+        }
+        return 16.99 + size.getPrice() + extraCost;
 
     }
 }

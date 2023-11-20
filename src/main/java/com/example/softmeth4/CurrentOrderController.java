@@ -38,11 +38,11 @@ public class CurrentOrderController implements Initializable {
         order = HelloApplication.getOrder();
     }
 
-    public CurrentOrderController(Order order, ListView<String> currentOrderView){
-        this.order = order;
-        this.currentOrderView = currentOrderView;
-        updateCurrentOrderView();
-    }
+//    public CurrentOrderController(Order order, ListView<String> currentOrderView){
+//        this.order = order;
+//        this.currentOrderView = currentOrderView;
+//        updateCurrentOrderView();
+//    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         removePizza.setOnAction(event -> {

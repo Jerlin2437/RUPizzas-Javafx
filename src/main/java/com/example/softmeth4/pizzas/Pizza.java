@@ -43,6 +43,10 @@ public abstract class Pizza {
         this.extraCheese = extraCheese;
     }
 
+    public boolean hasExtraSauce(boolean extraSauce){return extraSauce;}
+    public boolean hasExtraCheese(boolean extraCheese){ return extraCheese;}
+
+
     private String toppingsToString() {
         if (toppings.isEmpty()) {
             return "None";

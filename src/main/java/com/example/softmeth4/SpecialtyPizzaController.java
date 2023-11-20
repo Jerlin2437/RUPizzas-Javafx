@@ -25,6 +25,7 @@ public class SpecialtyPizzaController implements Initializable {
     private String size;
     private String hasExtraSauce;
     private String hasExtraCheese;
+    private double extraToppingsPrice;
 
 
     @FXML
@@ -90,6 +91,14 @@ public class SpecialtyPizzaController implements Initializable {
                 price.setText(formattedValue);
             }
         });
+        extraSauce.setOnAction(event -> {
+            pizza = pizzaParse();
+            updatePizzaPrice();
+        });
+        extraCheese.setOnAction(event -> {
+            pizza = pizzaParse();
+            updatePizzaPrice();
+        });
         addToOrder.setOnAction(new addToOrderHandler());
     }
     private Pizza pizzaParse(){
@@ -100,6 +109,27 @@ public class SpecialtyPizzaController implements Initializable {
         return PizzaMaker.createPizza(pizzaType +" " + size + " false false");
     }
 
+    //need to fix magic numbers
+    private void updatePizzaPrice() {
+        if (pizza != null) {
+            pizza = pizzaParse();
+            //base price without toppings
+            double basePrice = pizza.price();
+            //resets to 0
+            extraToppingsPrice = 0.0;
+            if (extraSauce.isSelected()){
+                extraToppingsPrice += 1.0;
+            }
+
+            if (extraCheese.isSelected()){
+                extraToppingsPrice += 1.0;
+            }
+
+            double totalPrice = basePrice + extraToppingsPrice;
+            String formattedValue = String.format("%.2f", totalPrice);
+            price.setText(formattedValue);
+        }
+    }
 
 
     public class addToOrderHandler implements EventHandler<ActionEvent>{
