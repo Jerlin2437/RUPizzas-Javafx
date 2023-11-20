@@ -47,4 +47,7 @@ public class StoreOrders {
         System.out.println(storeOrders);
 
     }
+    public static int getNextOrderNum() {
+        return nextOrderNum;
+    }
 }

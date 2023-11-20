@@ -91,7 +91,7 @@ public class CurrentOrderController implements Initializable {
         ObservableList<String> observableList = FXCollections.observableArrayList(pizzaSummaries);
         currentOrderView.setItems(observableList);
 
-        currentOrderNumber = String.valueOf(order.getOrderNumber());
+        currentOrderNumber = String.valueOf(StoreOrders.getNextOrderNum());
         orderNumber.setText(currentOrderNumber);
 
         calculateSubtotal();
