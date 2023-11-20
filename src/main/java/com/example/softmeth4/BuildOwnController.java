@@ -169,7 +169,7 @@ public class BuildOwnController implements Initializable {
                     if (buildExtraSauce.isSelected())
                         pizza.setExtraSauce(true);
                     order.addPizza(pizza);
-                    pizza = null;
+                 //   pizza = null;
                     showSuccessPopup();
                 } else {
                     showFailurePopup1();

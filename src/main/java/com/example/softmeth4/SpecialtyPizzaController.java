@@ -144,7 +144,7 @@ public class SpecialtyPizzaController implements Initializable {
                 if (extraSauce.isSelected())
                     pizza.setExtraSauce(true);
                 order.addPizza(pizza);
-                pizza = null;
+              //  pizza = null;
                 showSuccessPopup();
             } else
                 showFailurePopup();
