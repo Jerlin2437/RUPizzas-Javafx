@@ -2,6 +2,7 @@ package com.example.softmeth4;
 
 import com.example.softmeth4.businesslogic.Order;
 
+import com.example.softmeth4.businesslogic.StoreOrders;
 import com.example.softmeth4.enums.Topping;
 import com.example.softmeth4.pizzas.Pizza;
 import javafx.collections.FXCollections;
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class CurrentOrderController implements Initializable {
     private Order order;
+    private StoreOrders storeOrders;
     private String currentOrderNumber;
     private double subtotalValue;
     private double salesTaxValue;
@@ -31,11 +33,14 @@ public class CurrentOrderController implements Initializable {
     @FXML
     private Button removePizza;
     @FXML
+    private Button refreshOrder;
+    @FXML
     private TextField salesTax;
     @FXML
     private TextField subtotal;
     public CurrentOrderController(){
         order = HelloApplication.getOrder();
+        storeOrders = HelloApplication.getStoreOrders();
     }
 
 //    public CurrentOrderController(Order order, ListView<String> currentOrderView){
@@ -45,6 +50,7 @@ public class CurrentOrderController implements Initializable {
 //    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        updateCurrentOrderView();
         removePizza.setOnAction(event -> {
             removeSelectedPizza();
         });
@@ -52,10 +58,18 @@ public class CurrentOrderController implements Initializable {
             placeOrder();
         });
     }
+    @FXML
+    public void refresh(){
+        updateCurrentOrderView();
+    }
 
+//idk
     public void placeOrder(){
         if (!order.getPizzas().isEmpty()){
             showAddedPopup();
+            updateCurrentOrderView();
+            storeOrders.addOrder(order);
+            order = new Order();
             updateCurrentOrderView();
         } else{
             showEmptyPopup();
