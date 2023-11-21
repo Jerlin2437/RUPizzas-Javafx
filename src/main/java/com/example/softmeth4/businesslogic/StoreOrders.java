@@ -51,4 +51,20 @@ public class StoreOrders {
     public static int getNextOrderNum() {
         return nextOrderNum;
     }
+    public boolean removeOrder(int orderNumber){
+        for (int x = 0; x < getTotalOrders(); x++){
+            if (orderNumber == orders.get(x).getOrderNumber()) {
+                orders.remove(x);
+                return true;
+            }
+        }
+        return false;
+    }
+    public int getTotalOrders(){
+        return orders.size();
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
 }
