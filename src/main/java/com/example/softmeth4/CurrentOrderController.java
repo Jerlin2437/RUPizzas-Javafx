@@ -69,7 +69,8 @@ public class CurrentOrderController implements Initializable {
             showAddedPopup();
             updateCurrentOrderView();
             storeOrders.addOrder(order);
-            order = new Order();
+            HelloApplication.setOrder(new Order());
+            order = HelloApplication.getOrder();
             updateCurrentOrderView();
         } else{
             showEmptyPopup();

@@ -28,7 +28,7 @@ public abstract class Pizza {
         pizzaString.append("Extra Sauce: ").append(extraSauce).append("\n");
         pizzaString.append("Extra Cheese: ").append(extraCheese).append("\n");
         pizzaString.append("Toppings: ").append(toppingsToString()).append("\n");
-        pizzaString.append("Price: $").append(price()).append("\n");
+        pizzaString.append("Price: $").append(String.format("%.2f", price())).append("\n");
 
         return pizzaString.toString();
     }

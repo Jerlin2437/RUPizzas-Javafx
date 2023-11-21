@@ -74,6 +74,15 @@ public class HelloApplication extends Application {
     public static Order getOrder(){
         return order;
     }
+
+    public static void setStoreOrders(StoreOrders storeOrders) {
+        HelloApplication.storeOrders = storeOrders;
+    }
+
+    public static void setOrder(Order order) {
+        HelloApplication.order = order;
+    }
+
     public static void openSpecialty(){
         showScreen("specialty-pizza.fxml", "Order specialty pizzas!", 640, 500);
     }

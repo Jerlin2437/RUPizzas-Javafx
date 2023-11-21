@@ -54,7 +54,6 @@ public class SpecialtyPizzaController implements Initializable {
 
     public SpecialtyPizzaController(){
         order = HelloApplication.getOrder();
-        storeOrders = HelloApplication.getStoreOrders();
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -90,14 +89,6 @@ public class SpecialtyPizzaController implements Initializable {
                 String formattedValue = String.format("%.2f",pizza.price());
                 price.setText(formattedValue);
             }
-        });
-        extraSauce.setOnAction(event -> {
-            pizza = pizzaParse();
-            updatePizzaPrice();
-        });
-        extraCheese.setOnAction(event -> {
-            pizza = pizzaParse();
-            updatePizzaPrice();
         });
         addToOrder.setOnAction(new addToOrderHandler());
     }
@@ -138,6 +129,7 @@ public class SpecialtyPizzaController implements Initializable {
             addToOrder();
         }
         private void addToOrder(){
+            order = HelloApplication.getOrder();
             if (chooseSpecialty.getValue() != null){
                 if(extraCheese.isSelected())
                     pizza.setExtraCheese(true);

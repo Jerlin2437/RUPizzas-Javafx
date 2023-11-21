@@ -13,6 +13,7 @@ public class StoreOrders {
     private ArrayList<Order> orders;
 
     public StoreOrders() {
+        nextOrderNum = 1;
         orders = new ArrayList<>();
     }
     public void addOrder(Order order){
