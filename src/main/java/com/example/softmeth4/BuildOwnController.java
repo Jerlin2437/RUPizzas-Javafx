@@ -67,7 +67,6 @@ public class BuildOwnController implements Initializable {
             pizza = pizzaParse();
             updatePizzaPrice();
         });
-        buildAddToOrder.setOnAction(new buildAddToOrderHandler());
         buildExtraSauce.setOnAction(event -> {
             pizza = pizzaParse();
             updatePizzaPrice();
@@ -76,6 +75,8 @@ public class BuildOwnController implements Initializable {
             pizza = pizzaParse();
             updatePizzaPrice();
         });
+        buildAddToOrder.setOnAction(new buildAddToOrderHandler());
+
     }
 
     //need to fix for magic numbers
@@ -162,6 +163,7 @@ public class BuildOwnController implements Initializable {
         }
 
         private void addToOrder() {
+            order = HelloApplication.getOrder();
             if (sizeComboBox.getValue() != null) {
                 if (toppingCount >= 3){
                     if (buildExtraCheese.isSelected())

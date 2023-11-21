@@ -59,7 +59,6 @@ public class SpecialtyPizzaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle){
         chooseSpecialty.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         chooseSpecialty.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            //clear existing toppings in the ListView
             toppings.getItems().clear();
             if (newValue != null) {
                 if (newValue.equals("Deluxe")) {
@@ -89,6 +88,12 @@ public class SpecialtyPizzaController implements Initializable {
                 String formattedValue = String.format("%.2f",pizza.price());
                 price.setText(formattedValue);
             }
+        });
+        extraSauce.setOnAction(event -> {
+            updatePizzaPrice();
+        });
+        extraCheese.setOnAction(event -> {
+            updatePizzaPrice();
         });
         addToOrder.setOnAction(new addToOrderHandler());
     }
