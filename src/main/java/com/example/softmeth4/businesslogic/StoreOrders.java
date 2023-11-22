@@ -67,4 +67,14 @@ public class StoreOrders {
     public ArrayList<Order> getOrders() {
         return orders;
     }
+
+    public Order getOrderByNumber(int orderNumber){
+        for (Order order: orders){
+            if (order.getOrderNumber() == orderNumber){
+                return order;
+            }
+        }
+        //if order number not found
+        return null;
+    }
 }

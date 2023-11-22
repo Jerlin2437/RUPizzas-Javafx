@@ -8,6 +8,12 @@ import java.util.List;
 public class Order {
     private int orderNumber;
     private ArrayList<Pizza> pizzas;
+    private double subTotalValue;
+    private double salesTaxValue;
+    private double orderTotalValue;
+    private String finalSubTotal;
+    private String finalSalesTax;
+    private String finalOrderTotal;
     public Order(){
         pizzas = new ArrayList<>();
     }
@@ -46,6 +52,37 @@ public class Order {
         }
 
         return orderString.toString();
+    }
+
+    //instead of just subtotal, displays subtotal, sales tax, and order total
+    public String toFinalOrderDetailsString() {
+        StringBuilder orderString = new StringBuilder();
+        orderString.append("Order Number: ").append(orderNumber).append("\n");
+
+        for (int i = 0; i < pizzas.size(); i++) {
+            Pizza pizza = pizzas.get(i);
+            orderString.append("Pizza ").append(i + 1).append(": ").append(pizza.toString()).append("\n");
+        }
+        calculateFinalOrderValues();
+        orderString.append("Subtotal: $").append(finalSubTotal).append("\n");
+        orderString.append("Sales Tax: $").append(finalSalesTax).append("\n");
+        orderString.append("Order Total: $").append(finalOrderTotal).append("\n");
+
+        return orderString.toString();
+    }
+
+    private void calculateFinalOrderValues(){
+        subTotalValue = 0.0;
+        for (Pizza pizza : pizzas) {
+            subTotalValue += pizza.price();
+        }
+        double taxRate = 0.06625;
+        salesTaxValue = subTotalValue * taxRate;
+        orderTotalValue = subTotalValue + salesTaxValue;
+
+        finalSubTotal = String.format("%.2f", subTotalValue);
+        finalSalesTax = String.format("%.2f", salesTaxValue);
+        finalOrderTotal = String.format("%.2f", orderTotalValue);
     }
 
 }
