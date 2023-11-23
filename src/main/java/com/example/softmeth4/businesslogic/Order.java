@@ -26,7 +26,7 @@ public class Order {
     public void removePizza(Pizza pizza){pizzas.remove(pizza);}
 
     public ArrayList<Pizza> getPizzas() { return pizzas; }
-
+    public double getOrderTotalValue() { return orderTotalValue;}
     public int getOrderNumber() { return orderNumber;}
 
     public void setOrderNumber(int orderNumber) {

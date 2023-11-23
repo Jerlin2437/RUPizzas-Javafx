@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,6 +20,8 @@ public class StoreOrderController implements Initializable {
     public ComboBox<String> allOrders;
     @FXML
     public Button cancelOrder;
+    @FXML
+    public TextField orderTotal;
     @FXML
     private Button exportStoreOrders;
     @FXML
@@ -53,8 +52,8 @@ public class StoreOrderController implements Initializable {
             Order selectedOrder = storeOrders.getOrderByNumber(orderNumber);
             if (selectedOrder != null){
                 displayStoreOrders.getItems().add(selectedOrder.toFinalOrderDetailsString());
+                orderTotal.setText(String.format("%.2f", selectedOrder.getOrderTotalValue()));
             }
-
         }
     }
 
