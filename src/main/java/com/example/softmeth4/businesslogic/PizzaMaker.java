@@ -8,8 +8,22 @@ import com.example.softmeth4.pizzas.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This class contains a method responsible for creating instances of various pizza types
+ * given a string representation of a pizza.
+ *
+ * @author Jerlin Yuen
+ */
+
 public class PizzaMaker {
     //takes string of Pizzatype + more args depending on pizzatype.
+
+    /**
+     * Given a string representation of a pizza, it parses the string and creates a pizza of a respective pizza type,
+     * of a specific size, considers whether it has extra sauce and/or cheese, and adds the toppings given a list of toppings.
+     *
+     * @return a pizza of a specific pizza type, containing everything parsed from the string representation of the pizza
+     */
     public static Pizza createPizza(String pizzaType){
         String[] parsedPizza = pizzaType.split(" ");
         Size size = Size.fromString(parsedPizza[1]);
