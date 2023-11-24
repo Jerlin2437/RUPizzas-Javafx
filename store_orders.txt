@@ -1,19 +1,12 @@
 Order Number: 1
-Pizza 1: Type: Deluxe
-Size: SMALL
-Extra Sauce: false
-Extra Cheese: false
-Toppings: SAUSAGE, PEPPERONI, GREEN_PEPPER, ONION, MUSHROOM
-Price: $14.99
-
-Pizza 2: Type: Seafood
+Pizza 1: Type: Meatzza
 Size: SMALL
 Extra Sauce: true
 Extra Cheese: true
-Toppings: SHRIMP, SQUID, CRAB_MEAT
-Price: $19.99
+Toppings: SAUSAGE, BEEF, HAM, PEPPERONI
+Price: $18.99
 
-Subtotal: $34.98
-Sales Tax: $2.32
-Order Total: $37.30
+Subtotal: $18.99
+Sales Tax: $1.26
+Order Total: $20.25
 
