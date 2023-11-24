@@ -8,12 +8,13 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.softmeth4.SpecialtyPizzaController">
    <children>
       <ComboBox fx:id="chooseSpecialty" layoutX="38.0" layoutY="35.0" prefWidth="150.0" promptText="Choose your specialty pizza..." />
-      <RadioButton fx:id="small" layoutX="38.0" layoutY="70.0" mnemonicParsing="false" text="Small" selected="true">
+      <RadioButton fx:id="small" layoutX="38.0" layoutY="70.0" mnemonicParsing="false" selected="true" text="Small">
          <toggleGroup>
             <ToggleGroup fx:id="specialtyRadioButtonGroup" />
          </toggleGroup></RadioButton>
@@ -21,12 +22,13 @@
       <RadioButton fx:id="large" layoutX="38.0" layoutY="124.0" mnemonicParsing="false" text="Large" toggleGroup="$specialtyRadioButtonGroup" />
       <Label layoutX="39.0" layoutY="162.0" text="Toppings" />
       <ListView fx:id="toppings" accessibleText="iouhiuouifijfhds" layoutX="38.0" layoutY="188.0" prefHeight="183.0" prefWidth="164.0" />
-      <Label layoutX="277.0" layoutY="40.0" text="Sauce:" />
-      <CheckBox fx:id="extraSauce" layoutX="329.0" layoutY="70.0" mnemonicParsing="false" text="Extra Sauce" />
-      <CheckBox fx:id="extraCheese" layoutX="329.0" layoutY="97.0" mnemonicParsing="false" text="Extra Cheese" />
-      <Label layoutX="243.0" layoutY="162.0" text="Price: $" />
-      <TextField fx:id="price" editable="false" layoutX="293.0" layoutY="158.0" />
-      <Button fx:id="addToOrder" layoutX="465.0" layoutY="158.0" mnemonicParsing="false" text="Add to order!" />
-      <TextField fx:id="sauceType" editable="false" layoutX="323.0" layoutY="36.0" prefHeight="17.0" prefWidth="89.0" />
+      <Label layoutX="236.0" layoutY="40.0" text="Sauce:" />
+      <CheckBox fx:id="extraSauce" layoutX="241.0" layoutY="74.0" mnemonicParsing="false" text="Extra Sauce" />
+      <CheckBox fx:id="extraCheese" layoutX="241.0" layoutY="104.0" mnemonicParsing="false" text="Extra Cheese" />
+      <Label layoutX="236.0" layoutY="342.0" text="Price: $" />
+      <TextField fx:id="price" editable="false" layoutX="288.0" layoutY="337.0" />
+      <Button fx:id="addToOrder" layoutX="471.0" layoutY="338.0" mnemonicParsing="false" text="Add to order!" />
+      <TextField fx:id="sauceType" editable="false" layoutX="285.0" layoutY="36.0" prefHeight="17.0" prefWidth="89.0" />
+      <ImageView fx:id="pizzaImageView" fitHeight="176.0" fitWidth="238.0" layoutX="288.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

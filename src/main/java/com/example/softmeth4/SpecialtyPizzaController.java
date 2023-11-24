@@ -10,8 +10,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import static java.lang.Math.round;
@@ -34,7 +39,11 @@ public class SpecialtyPizzaController implements Initializable {
     private String hasExtraSauce;
     private String hasExtraCheese;
     private double extraToppingsPrice;
+    private Map<String, String> pizzaImageMap;
 
+
+    @FXML
+    private ImageView pizzaImageView;
 
     @FXML
     private CheckBox extraCheese;
@@ -81,6 +90,7 @@ public class SpecialtyPizzaController implements Initializable {
         chooseSpecialty.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             toppings.getItems().clear();
             if (newValue != null) {
+                updatePizzaImage(newValue);
                 if (newValue.equals("Deluxe")) {
                     sauceType.setText("Tomato");
                     toppings.getItems().addAll("Sausage", "Pepperoni", "Green Pepper", "Onion", "Mushroom");
@@ -115,6 +125,14 @@ public class SpecialtyPizzaController implements Initializable {
         extraCheese.setOnAction(event -> {
             updatePizzaPrice();
         });
+
+        pizzaImageMap = new HashMap<>();
+        pizzaImageMap.put("Deluxe", "/deluxepizza.jpg");
+        pizzaImageMap.put("Meatzza", "/MEATZZA.jpg");
+        pizzaImageMap.put("Pepperoni", "/pepperonipizza.jpg");
+        pizzaImageMap.put("Seafood", "/seafoodpizza.jpg");
+        pizzaImageMap.put("Supreme", "/supremepizza.jpg");
+
         addToOrder.setOnAction(new addToOrderHandler());
     }
 
@@ -153,6 +171,19 @@ public class SpecialtyPizzaController implements Initializable {
             double totalPrice = basePrice + extraToppingsPrice;
             String formattedValue = String.format("%.2f", totalPrice);
             price.setText(formattedValue);
+        }
+    }
+
+    private void updatePizzaImage(String pizzaType) {
+        String imagePath = pizzaImageMap.get(pizzaType);
+        if (imagePath != null) {
+            try {
+                Image pizzaImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
+                pizzaImageView.setImage(pizzaImage);
+            } catch (Exception e) {
+                // Handle the exception, e.g., display a default image or log a warning.
+                e.printStackTrace();
+            }
         }
     }
 
