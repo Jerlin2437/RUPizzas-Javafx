@@ -11,15 +11,32 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class is the main class for the JavaFX application for our pizzeria and pizza order application!
+ * (Runs the application)
+ *
+ * @author Jerlin Yuen, Jason Lei
+ */
 public class HelloApplication extends Application {
     private static final Map<String, FXMLLoader> loaders = new HashMap<>();
     private static Stage primaryStage;
     private static StoreOrders storeOrders;
     private static Order order;
+
+    /**
+     * This method launches the JavaFX application
+     *
+     * @param args args
+     */
     public static void main(String[] args) {
         launch();
     }
 
+    /**
+     * This method initializes the primary stage, store orders, and the initial main menu screen
+     *
+     * @param primaryStage primary stage
+     */
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -40,6 +57,16 @@ public class HelloApplication extends Application {
         }
     }
 
+    /**
+     * This method displays different screens based on loaded FXML files
+     * Manages loading and displaying of different screens with their respective
+     * titles and dimensions
+     *
+     * @param fxmlFile file
+     * @param title title of screen
+     * @param width width of screen
+     * @param height height of screen
+     */
     public static void showScreen(String fxmlFile, String title, int width, int height) {
         try {
             //can't use this code bc it doesn't let you reopen windows if they already been opened
@@ -68,30 +95,67 @@ public class HelloApplication extends Application {
         }
     }
 
+    /**
+     * Getter method (accessor)
+     *
+     * @return storeOrders
+     */
     public static StoreOrders getStoreOrders(){
         return storeOrders;
     }
+
+    /**
+     * Getter method (accessor)
+     *
+     * @return order
+     */
     public static Order getOrder(){
         return order;
     }
 
+
+    /**
+     * Setter method (mutator)
+     *
+     * @param storeOrders store orders
+     */
     public static void setStoreOrders(StoreOrders storeOrders) {
         HelloApplication.storeOrders = storeOrders;
     }
 
+    /**
+     * Setter method (mutator)
+     *
+     * @param order pizza
+     */
     public static void setOrder(Order order) {
         HelloApplication.order = order;
     }
 
+    /**
+     * Opens the screen for specialty pizza orders
+     */
     public static void openSpecialty(){
         showScreen("specialty-pizza.fxml", "Order specialty pizzas!", 640, 500);
     }
+
+    /**
+     * Opens the screen for "build your own pizza" orders
+     */
     public static void openBuildOwn(){
         showScreen("build-own.fxml", "Build your own pizza!", 640, 500);
     }
+
+    /**
+     * Opens the screen for the current order
+     */
     public static void openCurrentOrder(){
         showScreen("current-order.fxml", "Order Detail", 640, 500);
     }
+
+    /**
+     * Opens the screen for the collection of store orders
+     */
     public static void openStoreOrder(){
         showScreen("store-order.fxml", "Store Orders", 640, 500);
     }

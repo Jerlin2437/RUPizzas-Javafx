@@ -15,6 +15,15 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This controller class allows customers to build their own pizza orders on a JavaFX application
+ * This class contains methods to add and remove toppings, as well as various event handlers
+ * to handle popups and other events when buttons/checkboxes/combo boxes are selected and/or interacted
+ * with.
+ *
+ * @author Jason Lei, Jerlin Yuen
+ */
+
 public class BuildOwnController implements Initializable {
 
     private Order order;
@@ -45,11 +54,23 @@ public class BuildOwnController implements Initializable {
     @FXML
     private ToggleGroup sauceRadioButton;
 
+    /**
+     * Default constructor, initializing an instance of a customer's pizza order
+     * and the store's collection of orders
+     */
     public BuildOwnController() {
         order = HelloApplication.getOrder();
         storeOrders = HelloApplication.getStoreOrders();
     }
 
+    /**
+     * Initializes listeners and event handlers for various UI elements, including
+     * the combo box selection changes and button clicks that occur in the interface.
+     * (ex: adds and remove toppings when the respective buttons are clicked)
+     *
+     * @param url - url
+     * @param resourceBundle - resource bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sizeComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -80,6 +101,9 @@ public class BuildOwnController implements Initializable {
     }
 
     //need to fix for magic numbers
+    /**
+     * Updates the displayed pizza price based on selected toppings, size, and other options.
+     */
     private void updatePizzaPrice() {
         if (pizza != null) {
             if (toppingCount >= 3) {
@@ -108,6 +132,11 @@ public class BuildOwnController implements Initializable {
         }
     }
 
+    /**
+     * Parses UI elements and returns a new Pizza object based on user selections
+     *
+     * @return customized pizza based on user selections
+     */
     private Pizza pizzaParse() {
         Toggle selectedToggle = sauceRadioButton.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
@@ -128,6 +157,11 @@ public class BuildOwnController implements Initializable {
 
     //need at least 3 toppings, add this requirement
     //for each additional topping after 3, add $1.49
+    /**
+     * Selects and adds toppings to a new ListView of selected toppings
+     * Handles errors and displays pop-up alerts for specific cases
+     * Updates the displayed pizza price after
+     */
     private void addToppings() {
         // Get the selected item from notSelectedToppings
         Topping selectedTopping = notSelectedToppings.getSelectionModel().getSelectedItem();
@@ -146,6 +180,10 @@ public class BuildOwnController implements Initializable {
         }
     }
 
+    /**
+     * Selects and removes toppings from a ListView of selected toppings.
+     * Updates the displayed pizza price after
+     */
     private void removeToppings() {
         Topping selectedTopping = selectedToppings.getSelectionModel().getSelectedItem();
         if (selectedTopping != null) {
@@ -156,12 +194,25 @@ public class BuildOwnController implements Initializable {
         }
     }
 
+    /**
+     * An inner class that handles the action event triggered by the buildAddToOrder button
+     */
     public class buildAddToOrderHandler implements EventHandler<ActionEvent> {
+        /**
+         * Event handler that calls the method addToOrder() when the action event
+         * is triggered (button is pressed)
+         *
+         * @param actionEvent action event
+         */
         @Override
         public void handle(ActionEvent actionEvent) {
             addToOrder();
         }
 
+        /**
+         * Adds the BYO pizza to the order, displaying a success popup if successful,
+         * and a failure popup if it does not meet requirements (ex: pizza does not have at least 3 toppings)
+         */
         private void addToOrder() {
             order = HelloApplication.getOrder();
             if (sizeComboBox.getValue() != null) {
@@ -180,6 +231,9 @@ public class BuildOwnController implements Initializable {
                 showFailurePopup2();
         }
 
+        /**
+         * Displays a success alert/popup with a specific message
+         */
         private void showSuccessPopup() {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Pizza Order Successful");
@@ -189,6 +243,11 @@ public class BuildOwnController implements Initializable {
             alert.showAndWait();
         }
 
+
+        /**
+         * Displays a failure alert/popup with a specific message if the order does not meet
+         * topping requirements
+         */
         private void showFailurePopup1() {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Pizza Order Unsuccessful");
@@ -197,6 +256,10 @@ public class BuildOwnController implements Initializable {
             alert.showAndWait();
         }
 
+
+        /**
+         * Displays a failure alert/popup with a specific message
+         */
         private void showFailurePopup2() {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Pizza Order Unsuccessful");
