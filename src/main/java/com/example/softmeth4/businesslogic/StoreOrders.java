@@ -6,6 +6,9 @@ import com.example.softmeth4.pizzas.BuildYourOwn;
 import com.example.softmeth4.pizzas.Meatzza;
 import com.example.softmeth4.pizzas.Pizza;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -129,4 +132,29 @@ public class StoreOrders {
         //if order number not found
         return null;
     }
+
+    /**
+     * Exports a selected order to a text file, displaying an error popup upon success and failure.
+     *
+     * @return true if export is successful, false otherwise
+     */
+    public boolean export(){
+        if (orders.isEmpty()){
+            return false;
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("store_orders.txt"))) {
+            for (Order order : orders) {
+                writer.write(order.toFinalOrderDetailsString());
+                writer.newLine();
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 }

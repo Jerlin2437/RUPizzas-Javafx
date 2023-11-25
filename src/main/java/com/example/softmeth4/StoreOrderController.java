@@ -102,14 +102,10 @@ public class StoreOrderController implements Initializable {
      * Exports a selected order to a text file, displaying an error popup upon success and failure.
      */
     private void exportOrdersToFile(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("store_orders.txt"))) {
-            for (Order order : storeOrders.getOrders()) {
-                writer.write(order.toFinalOrderDetailsString());
-                writer.newLine();
-            }
+        boolean exportSuccess = storeOrders.export();
+        if (exportSuccess){
             showExportSuccessMessage();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else{
             showExportErrorMessage();
         }
     }
