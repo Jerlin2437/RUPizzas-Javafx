@@ -15,6 +15,7 @@ import java.util.ArrayList;
  */
 public abstract class Pizza {
 
+    private static final int FORMAT_LENGTH_SPLICE = 2;
     protected ArrayList<Topping> toppings;
     protected Size size;
     protected Sauce sauce;
@@ -108,8 +109,7 @@ public abstract class Pizza {
             for (Topping topping : toppings) {
                 toppingsString.append(topping).append(", ");
             }
-            // Remove the trailing comma and space
-            toppingsString.setLength(toppingsString.length() - 2);
+            toppingsString.setLength(toppingsString.length() - FORMAT_LENGTH_SPLICE);
             return toppingsString.toString();
         }
     }

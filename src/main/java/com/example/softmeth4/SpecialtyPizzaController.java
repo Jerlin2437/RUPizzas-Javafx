@@ -2,8 +2,6 @@ package com.example.softmeth4;
 
 import com.example.softmeth4.businesslogic.Order;
 import com.example.softmeth4.businesslogic.PizzaMaker;
-import com.example.softmeth4.businesslogic.StoreOrders;
-import com.example.softmeth4.enums.Size;
 import com.example.softmeth4.pizzas.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +17,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import static java.lang.Math.round;
 
 /**
  * This controller class allows customers to select and order specialty pizzas on a JavaFX application
@@ -30,6 +27,8 @@ import static java.lang.Math.round;
  * @author Jason Lei, Jerlin Yuen
  */
 public class SpecialtyPizzaController implements Initializable {
+    private static final double MORESAUCECHEESE = 1.0;
+    @FXML
     public TextField sauceType;
     private Order order;
     private Pizza pizza;
@@ -44,13 +43,6 @@ public class SpecialtyPizzaController implements Initializable {
     private CheckBox extraCheese;
     @FXML
     private CheckBox extraSauce;
-
-    @FXML
-    private RadioButton small;
-    @FXML
-    private RadioButton medium;
-    @FXML
-    private RadioButton large;
 
     @FXML
     private ComboBox<String> chooseSpecialty;
@@ -103,23 +95,15 @@ public class SpecialtyPizzaController implements Initializable {
                     toppings.getItems().addAll("Pepperoni");
                 }
                 pizza = pizzaParse();
-                String formattedValue = String.format("%.2f",pizza.price());
-                price.setText(formattedValue);
+                updatePizzaPrice();
             }
         });
-        specialtyRadioButtonGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) ->{
-            if (chooseSpecialty.getValue() != null) {
-                pizza = pizzaParse();
-                String formattedValue = String.format("%.2f",pizza.price());
-                price.setText(formattedValue);
-            }
-        });
-        extraSauce.setOnAction(event -> {
-            updatePizzaPrice();
-        });
-        extraCheese.setOnAction(event -> {
-            updatePizzaPrice();
-        });
+        specialtyRadioButtonGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && newValue.isSelected()) {
+                updatePizzaPrice();
+            }});
+        extraSauce.setOnAction(event -> updatePizzaPrice());
+        extraCheese.setOnAction(event -> updatePizzaPrice());
 
         pizzaImageMap = new HashMap<>();
         pizzaImageMap.put("Deluxe", "/deluxepizza.jpg");
@@ -127,7 +111,6 @@ public class SpecialtyPizzaController implements Initializable {
         pizzaImageMap.put("Pepperoni", "/pepperonipizza.jpg");
         pizzaImageMap.put("Seafood", "/seafoodpizza.jpg");
         pizzaImageMap.put("Supreme", "/supremepizza.jpg");
-
         addToOrder.setOnAction(new addToOrderHandler());
     }
 
@@ -144,6 +127,7 @@ public class SpecialtyPizzaController implements Initializable {
         return PizzaMaker.createPizza(pizzaType +" " + size + " false false");
     }
 
+
     //need to fix magic numbers
     /**
      * Updates the displayed pizza price based on whether extra sauce and/or extra cheese is selected
@@ -156,11 +140,11 @@ public class SpecialtyPizzaController implements Initializable {
             //resets to 0
             extraToppingsPrice = 0.0;
             if (extraSauce.isSelected()){
-                extraToppingsPrice += 1.0;
+                extraToppingsPrice += MORESAUCECHEESE;
             }
 
             if (extraCheese.isSelected()){
-                extraToppingsPrice += 1.0;
+                extraToppingsPrice += MORESAUCECHEESE;
             }
 
             double totalPrice = basePrice + extraToppingsPrice;

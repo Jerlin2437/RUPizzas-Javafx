@@ -11,6 +11,8 @@ import com.example.softmeth4.enums.Topping;
  * @author Jerlin Yuen, Jason Lei
  */
 public class Supreme extends Pizza{
+    private static final double SUPREME_PRICE = 15.99;
+
     /**
      * Parameterized constructor allows for the creation of a Supreme pizza,
      * contains list of preset toppings and sauce.
@@ -56,7 +58,7 @@ public class Supreme extends Pizza{
         if (hasExtraCheese(extraCheese)){
             extraCost += 1.0;
         }
-        return 15.99 + size.getPrice() + extraCost;
+        return SUPREME_PRICE + size.getPrice() + extraCost;
 
     }
 }

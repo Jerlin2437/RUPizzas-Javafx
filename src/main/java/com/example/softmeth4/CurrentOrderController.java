@@ -25,6 +25,8 @@ import java.util.ResourceBundle;
  */
 
 public class CurrentOrderController implements Initializable {
+    private static final double TAX_RATE = 0.06625;
+    private static final int ILLEGAL_INDEX = -1;
     private Order order;
     private StoreOrders storeOrders;
     private String currentOrderNumber;
@@ -115,7 +117,7 @@ public class CurrentOrderController implements Initializable {
      */
     public void removeSelectedPizza(){
         int selectedIndex = currentOrderView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1){
+        if (selectedIndex != ILLEGAL_INDEX){
             Pizza selectedPizza = order.getPizzas().get(selectedIndex);
             order.removePizza(selectedPizza);
             updateCurrentOrderView();
@@ -158,7 +160,7 @@ public class CurrentOrderController implements Initializable {
      */
     private void calculateSalesTax() {
         //6.625% sales tax in NJ
-        double taxRate = 0.06625;
+        double taxRate = TAX_RATE;
         salesTaxValue = subtotalValue * taxRate;
         salesTax.setText(String.format("%.2f", salesTaxValue));
     }

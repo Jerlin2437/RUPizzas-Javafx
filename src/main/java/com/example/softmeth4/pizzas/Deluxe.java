@@ -13,6 +13,8 @@ import com.example.softmeth4.enums.Topping;
  */
 
 public class Deluxe extends Pizza{
+    private static final double DELUXE_PRICE = 14.99;
+
     /**
      * Parameterized constructor allows for the creation of a Deluxe pizza,
      * contains list of preset toppings and sauce.
@@ -56,6 +58,6 @@ public class Deluxe extends Pizza{
         if (hasExtraCheese(extraCheese)){
             extraCost += 1.0;
         }
-        return 14.99 + size.getPrice() + extraCost;
+        return DELUXE_PRICE + size.getPrice() + extraCost;
     }
 }

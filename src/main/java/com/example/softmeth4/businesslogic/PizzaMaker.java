@@ -16,6 +16,11 @@ import java.util.Objects;
  */
 
 public class PizzaMaker {
+    private static final int EXTRASAUCE_PARSE = 2;
+    private static final int EXTRACHEESE_PARSE = 3;
+    private static final int SAUCE_PARSE = 4;
+    private static final int TOPPING_PARSE = 5;
+
     //takes string of Pizzatype + more args depending on pizzatype.
 
     /**
@@ -27,8 +32,8 @@ public class PizzaMaker {
     public static Pizza createPizza(String pizzaType){
         String[] parsedPizza = pizzaType.split(" ");
         Size size = Size.fromString(parsedPizza[1]);
-        boolean extraSauce = Boolean.parseBoolean(parsedPizza[2]);
-        boolean extraCheese = Boolean.parseBoolean(parsedPizza[3]);
+        boolean extraSauce = Boolean.parseBoolean(parsedPizza[EXTRASAUCE_PARSE]);
+        boolean extraCheese = Boolean.parseBoolean(parsedPizza[EXTRACHEESE_PARSE]);
         if (Objects.equals(parsedPizza[0], "Supreme"))
             return new Supreme(size, extraSauce, extraCheese);
         else if (Objects.equals(parsedPizza[0], "Seafood"))
@@ -40,9 +45,9 @@ public class PizzaMaker {
         else if (Objects.equals(parsedPizza[0],"Pepperoni"))
             return new Pepperoni(size, extraSauce, extraCheese);
         else if (Objects.equals(parsedPizza[0], "BYO")){
-            Sauce sauce = Sauce.fromString(parsedPizza[4]);
+            Sauce sauce = Sauce.fromString(parsedPizza[SAUCE_PARSE]);
             ArrayList<Topping> toppings = new ArrayList<>();
-            for (int x = 5; x < parsedPizza.length; x++){
+            for (int x = TOPPING_PARSE; x < parsedPizza.length; x++){
                 toppings.add(Topping.fromString(parsedPizza[x]));
             }
             return new BuildYourOwn(size, extraSauce, extraCheese, sauce,toppings);

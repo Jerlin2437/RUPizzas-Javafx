@@ -12,6 +12,7 @@ public enum Size {
     MEDIUM(2.00),
     LARGE(4.00);
 
+
     private final double price;
 
     /**

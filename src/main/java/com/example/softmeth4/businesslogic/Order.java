@@ -13,6 +13,7 @@ import java.util.List;
  * @author Jerlin Yuen, Jason Lei
  */
 public class Order {
+    private static final double TAX_RATE = 0.06625;
     private int orderNumber;
     private ArrayList<Pizza> pizzas;
     private double subTotalValue;
@@ -145,7 +146,7 @@ public class Order {
         for (Pizza pizza : pizzas) {
             subTotalValue += pizza.price();
         }
-        double taxRate = 0.06625;
+        double taxRate = TAX_RATE;
         salesTaxValue = subTotalValue * taxRate;
         orderTotalValue = subTotalValue + salesTaxValue;
 

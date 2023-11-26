@@ -14,6 +14,10 @@ import java.util.ArrayList;
  * @author Jerlin Yuen, Jason Lei
  */
 public class BuildYourOwn extends Pizza{
+    private static final double BYO_PRICE = 8.99;
+    private static final int MIN_TOPPING = 3;
+    private static final double ADDITIONAL_TOPPINGS = 1.49;
+
     /**
      * Parameterized constructor allows for the creation of a BYO pizza
      *
@@ -55,10 +59,10 @@ public class BuildYourOwn extends Pizza{
         if (hasExtraCheese(extraCheese)){
             extraCost += 1.0;
         }
-        if (toppings.size() <= 3){
-            return 8.99 + size.getPrice() + extraCost;
+        if (toppings.size() <= MIN_TOPPING){
+            return BYO_PRICE + size.getPrice() + extraCost;
         }
         else
-            return (8.99 + size.getPrice() + (toppings.size() - 3) * 1.49) + extraCost;
+            return (BYO_PRICE + size.getPrice() + (toppings.size() - MIN_TOPPING) * ADDITIONAL_TOPPINGS) + extraCost;
     }
 }

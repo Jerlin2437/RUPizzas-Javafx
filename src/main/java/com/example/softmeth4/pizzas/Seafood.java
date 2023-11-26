@@ -11,6 +11,8 @@ import com.example.softmeth4.enums.Topping;
  * @author Jerlin Yuen, Jason Lei
  */
 public class Seafood extends Pizza{
+    private static final double SEAFOOD_PRICE = 17.99;
+
     /**
      * Parameterized constructor allows for the creation of a Seafood pizza,
      * contains list of preset toppings and sauce.
@@ -52,7 +54,7 @@ public class Seafood extends Pizza{
         if (hasExtraCheese(extraCheese)){
             extraCost += 1.0;
         }
-        return 17.99 + size.getPrice() + extraCost;
+        return SEAFOOD_PRICE + size.getPrice() + extraCost;
 
     }
 }

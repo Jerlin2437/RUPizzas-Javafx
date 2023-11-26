@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 /**
  * This controller class allows customers to build their own pizza orders on a JavaFX application
  * This class contains methods to add and remove toppings, as well as various event handlers
@@ -26,6 +27,10 @@ import java.util.ResourceBundle;
 
 public class BuildOwnController implements Initializable {
 
+    private static final int MIN_TOPPING = 3;
+    private static final int MAX_TOPPING = 7;
+    private static final double TOPPING_PRICE = 1.49;
+    private static final double MORESAUCECHEESE = 1.0;
     private Order order;
     private StoreOrders storeOrders;
     private Pizza pizza;
@@ -106,19 +111,19 @@ public class BuildOwnController implements Initializable {
      */
     private void updatePizzaPrice() {
         if (pizza != null) {
-            if (toppingCount >= 3) {
+            if (toppingCount >= MIN_TOPPING) {
                 pizza = pizzaParse();
                 //base price without toppings
                 double basePrice = pizza.price();
                 //if more than 3 toppings, add $1.49 for each additional topping after 3
-                additionalToppingPrice = Math.max(0, toppingCount - 7) * 1.49;
+                additionalToppingPrice = Math.max(0, toppingCount - MAX_TOPPING) * TOPPING_PRICE;
 
                 if (buildExtraSauce.isSelected()){
-                    additionalToppingPrice += 1.0;
+                    additionalToppingPrice += MORESAUCECHEESE;
                 }
 
                 if (buildExtraCheese.isSelected()){
-                    additionalToppingPrice += 1.0;
+                    additionalToppingPrice += MORESAUCECHEESE;
                 }
 
                 double totalPrice = basePrice + additionalToppingPrice;
@@ -165,7 +170,7 @@ public class BuildOwnController implements Initializable {
     private void addToppings() {
         // Get the selected item from notSelectedToppings
         Topping selectedTopping = notSelectedToppings.getSelectionModel().getSelectedItem();
-        if (selectedToppings.getItems().size() >= 7) {
+        if (selectedToppings.getItems().size() >= MAX_TOPPING) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Too many toppings!");
             alert.setHeaderText(null);
@@ -216,7 +221,7 @@ public class BuildOwnController implements Initializable {
         private void addToOrder() {
             order = HelloApplication.getOrder();
             if (sizeComboBox.getValue() != null) {
-                if (toppingCount >= 3){
+                if (toppingCount >= MIN_TOPPING){
                     if (buildExtraCheese.isSelected())
                         pizza.setExtraCheese(true);
                     if (buildExtraSauce.isSelected())
