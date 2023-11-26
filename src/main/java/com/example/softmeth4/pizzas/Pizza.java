@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @author Jerlin Yuen, Jason Lei
  */
 public abstract class Pizza {
+
     protected ArrayList<Topping> toppings;
     protected Size size;
     protected Sauce sauce;

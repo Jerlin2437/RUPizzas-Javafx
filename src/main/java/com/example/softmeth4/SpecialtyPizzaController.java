@@ -32,12 +32,7 @@ import static java.lang.Math.round;
 public class SpecialtyPizzaController implements Initializable {
     public TextField sauceType;
     private Order order;
-    private StoreOrders storeOrders;
     private Pizza pizza;
-    private String pizzaType;
-    private String size;
-    private String hasExtraSauce;
-    private String hasExtraCheese;
     private double extraToppingsPrice;
     private Map<String, String> pizzaImageMap;
 
