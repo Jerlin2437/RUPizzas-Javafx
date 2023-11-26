@@ -2,17 +2,11 @@ package com.example.softmeth4;
 
 import com.example.softmeth4.businesslogic.Order;
 import com.example.softmeth4.businesslogic.StoreOrders;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
-import java.nio.Buffer;
 import java.util.ResourceBundle;
 
 /**
@@ -29,6 +23,7 @@ public class StoreOrderController implements Initializable {
     public Button cancelOrder;
     @FXML
     public TextField orderTotal;
+    public Button refreshOrder;
     @FXML
     private Button exportStoreOrders;
     @FXML
@@ -61,6 +56,7 @@ public class StoreOrderController implements Initializable {
         cancelOrder.setOnAction(event -> removeOrder());
         exportStoreOrders.setOnAction(event -> exportOrdersToFile());
         allOrders.setOnAction(event -> displaySelectedOrder());
+        refreshOrder.setOnAction(event -> refresh());
     }
 
     /**
@@ -69,6 +65,7 @@ public class StoreOrderController implements Initializable {
      */
     private void displaySelectedOrder(){
         //clears listview first of previous items/orders
+
         displayStoreOrders.getItems().clear();
         if (allOrders.getValue() != null){
             int orderNumber = Integer.parseInt(allOrders.getValue());
@@ -163,5 +160,12 @@ public class StoreOrderController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Please select an order to remove.");
         alert.showAndWait();
+    }
+
+    public void refresh() {
+        allOrders.getItems().clear();
+        for (int x = 0; x < storeOrders.getTotalOrders(); x++){
+            allOrders.getItems().add(String.valueOf(storeOrders.getOrders().get(x).getOrderNumber()));
+        }
     }
 }

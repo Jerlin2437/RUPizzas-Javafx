@@ -1,0 +1,43 @@
+Order Number: 1
+Pizza 1: Type: Meatzza
+Size: SMALL
+Extra Sauce: false
+Extra Cheese: false
+Toppings: SAUSAGE, BEEF, HAM, PEPPERONI
+Price: $16.99
+
+Subtotal: $16.99
+Sales Tax: $1.13
+Order Total: $18.12
+
+Order Number: 2
+Pizza 1: Type: Supreme
+Size: LARGE
+Extra Sauce: false
+Extra Cheese: false
+Toppings: SAUSAGE, PEPPERONI, GREEN_PEPPER, ONION, MUSHROOM, HAM, BLACK_OLIVE
+Price: $19.99
+
+Subtotal: $19.99
+Sales Tax: $1.32
+Order Total: $21.31
+
+Order Number: 4
+Pizza 1: Type: Supreme
+Size: SMALL
+Extra Sauce: false
+Extra Cheese: false
+Toppings: SAUSAGE, PEPPERONI, GREEN_PEPPER, ONION, MUSHROOM, HAM, BLACK_OLIVE
+Price: $15.99
+
+Pizza 2: Type: Seafood
+Size: SMALL
+Extra Sauce: false
+Extra Cheese: false
+Toppings: SHRIMP, SQUID, CRAB_MEAT
+Price: $17.99
+
+Subtotal: $33.98
+Sales Tax: $2.25
+Order Total: $36.23
+

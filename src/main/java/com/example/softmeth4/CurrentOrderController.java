@@ -74,9 +74,11 @@ public class CurrentOrderController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateCurrentOrderView();
         removePizza.setOnAction(event -> {
+          //  order = HelloApplication.getOrder();
             removeSelectedPizza();
         });
         placeOrder.setOnAction(event -> {
+            order = HelloApplication.getOrder();
             placeOrder();
         });
     }
