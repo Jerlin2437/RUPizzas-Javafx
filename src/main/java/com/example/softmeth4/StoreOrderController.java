@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.example.softmeth4.HelloApplication.getPrimaryStage;
+
 /**
  * This controller class that manages store orders for a JavaFX application.
  * This class contains methods and event handlers to handle viewing and cancelling orders
@@ -103,7 +105,7 @@ public class StoreOrderController implements Initializable {
             showExportErrorMessage();
             return;
         }
-        boolean exportSuccess = storeOrders.export();
+        boolean exportSuccess = storeOrders.export(getPrimaryStage());
         if (exportSuccess){
             showExportSuccessMessage();
         } else{

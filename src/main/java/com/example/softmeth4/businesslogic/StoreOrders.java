@@ -5,6 +5,8 @@ import com.example.softmeth4.enums.Topping;
 import com.example.softmeth4.pizzas.BuildYourOwn;
 import com.example.softmeth4.pizzas.Meatzza;
 import com.example.softmeth4.pizzas.Pizza;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -116,25 +118,36 @@ public class StoreOrders {
     }
 
     /**
-     * Exports a selected order to a text file, displaying an error popup upon success and failure.
+     * Exports the store orders to a text file, displaying an error popup upon success and failure.
+     * Allows a user to choose where to export/save the file to.
      *
      * @return true if export is successful, false otherwise
      */
-    public boolean export(){
+    public boolean export(Stage primaryStage){
         if (orders.isEmpty()){
             return false;
         }
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("store_orders.txt"))) {
-            for (Order order : orders) {
-                writer.write(order.toFinalOrderDetailsString());
-                writer.newLine();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Store Orders File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+
+        // Show save file dialog
+        java.io.File file = fileChooser.showSaveDialog(primaryStage);
+
+        if (file != null) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                for (Order order : orders) {
+                    writer.write(order.toFinalOrderDetailsString());
+                    writer.newLine();
+                }
+                return true;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
             }
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
 

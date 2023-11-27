@@ -95,6 +95,10 @@ public class HelloApplication extends Application {
         }
     }
 
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     /**
      * Getter method (accessor)
      *
