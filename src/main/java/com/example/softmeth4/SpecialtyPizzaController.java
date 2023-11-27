@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 public class SpecialtyPizzaController implements Initializable {
     private static final double MORESAUCECHEESE = 1.0;
     @FXML
-    public TextField sauceType;
+    private TextField sauceType;
     private Order order;
     private Pizza pizza;
     private double extraToppingsPrice;

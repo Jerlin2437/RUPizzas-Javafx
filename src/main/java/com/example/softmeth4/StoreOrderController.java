@@ -20,12 +20,13 @@ import static com.example.softmeth4.HelloApplication.getPrimaryStage;
  */
 public class StoreOrderController implements Initializable {
     @FXML
-    public ComboBox<String> allOrders;
+    private ComboBox<String> allOrders;
     @FXML
-    public Button cancelOrder;
+    private Button cancelOrder;
     @FXML
-    public TextField orderTotal;
-    public Button refreshOrder;
+    private TextField orderTotal;
+    @FXML
+    private Button refreshOrder;
     @FXML
     private Button exportStoreOrders;
     @FXML

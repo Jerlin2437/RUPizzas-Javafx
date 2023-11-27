@@ -48,9 +48,9 @@ public class BuildOwnController implements Initializable {
     @FXML
     private Button buildAddToOrder;
     @FXML
-    public Button addTopping;
+    private Button addTopping;
     @FXML
-    public Button removeTopping;
+    private Button removeTopping;
     @FXML
     private ListView<Topping> selectedToppings;
     @FXML
