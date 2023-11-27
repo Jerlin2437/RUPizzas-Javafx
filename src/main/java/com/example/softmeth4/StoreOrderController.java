@@ -131,7 +131,7 @@ public class StoreOrderController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Export Error");
         alert.setHeaderText(null);
-        alert.setContentText("Failed to export store orders. You need to refresh. Please try again.");
+        alert.setContentText("Failed to export store orders. You MIGHT need to refresh. Please try again.");
         alert.showAndWait();
     }
 

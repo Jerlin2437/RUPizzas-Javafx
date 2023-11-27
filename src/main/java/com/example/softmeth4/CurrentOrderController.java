@@ -100,7 +100,7 @@ public class CurrentOrderController implements Initializable {
      * the current order.
      */
     public void placeOrder(){
-        if (!order.getPizzas().isEmpty() && !currentOrderView.getItems().isEmpty()){
+        if (!order.getPizzas().isEmpty() && currentOrderView.getItems().size() == order.getPizzas().size()){
             showAddedPopup();
             updateCurrentOrderView();
             storeOrders.addOrder(order);
@@ -202,9 +202,9 @@ public class CurrentOrderController implements Initializable {
      */
     private void showEmptyPopup() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Pizza Order is Empty");
+        alert.setTitle("Not all Pizzas are in the Order Yet!");
         alert.setHeaderText(null);
-        alert.setContentText("No pizzas have been added to the order yet! If you have ordered already, please refresh.");
+        alert.setContentText("Not all pizzas have been added to the order yet! If you have ordered some, please refresh.");
         alert.initOwner(currentOrderView.getScene().getWindow());
         alert.showAndWait();
     }
