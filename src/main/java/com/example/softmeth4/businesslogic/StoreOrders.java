@@ -56,24 +56,6 @@ public class StoreOrders {
         }
         return storeOrdersString.toString();
     }
-    public static void main(String[] args) {
-        // Create pizzas
-        String pizzaType1 = "Supreme LARGE true false";
-        Pizza pizza1 = PizzaMaker.createPizza(pizzaType1);
-
-        String pizzaType2 = "BYO MEDIUM true true Tomato PEPPERONI MUSHROOM";
-        Pizza pizza2 = PizzaMaker.createPizza(pizzaType2);
-
-        StoreOrders storeOrders = new StoreOrders();
-        Order order = new Order();
-        order.addPizza(pizza1);
-        order.addPizza(pizza2);
-        storeOrders.addOrder(order);
-        // Display pizza details
-
-        System.out.println(storeOrders);
-
-    }
 
     /**
      * Getter method (accessor)

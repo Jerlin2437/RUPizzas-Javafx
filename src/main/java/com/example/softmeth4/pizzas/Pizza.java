@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public abstract class Pizza {
 
     private static final int FORMAT_LENGTH_SPLICE = 2;
+
     protected ArrayList<Topping> toppings;
     protected Size size;
     protected Sauce sauce;

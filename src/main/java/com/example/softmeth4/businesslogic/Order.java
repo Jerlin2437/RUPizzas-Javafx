@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class Order {
     private static final double TAX_RATE = 0.06625;
+            ;
     private int orderNumber;
     private ArrayList<Pizza> pizzas;
     private double subTotalValue;

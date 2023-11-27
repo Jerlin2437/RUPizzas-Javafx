@@ -99,6 +99,10 @@ public class StoreOrderController implements Initializable {
      * Exports a selected order to a text file, displaying an error popup upon success and failure.
      */
     private void exportOrdersToFile(){
+        if(allOrders.getItems().size() != storeOrders.getTotalOrders()){
+            showExportErrorMessage();
+            return;
+        }
         boolean exportSuccess = storeOrders.export();
         if (exportSuccess){
             showExportSuccessMessage();
@@ -125,7 +129,7 @@ public class StoreOrderController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Export Error");
         alert.setHeaderText(null);
-        alert.setContentText("Failed to export store orders. Please try again.");
+        alert.setContentText("Failed to export store orders. You need to refresh. Please try again.");
         alert.showAndWait();
     }
 
