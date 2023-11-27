@@ -32,7 +32,7 @@ public class BuildOwnController implements Initializable {
     private static final double TOPPING_PRICE = 1.49;
     private static final double MORESAUCECHEESE = 1.0;
     private Order order;
-    private StoreOrders storeOrders;
+    private final StoreOrders storeOrders;
     private Pizza pizza;
     private int toppingCount;
     private double additionalToppingPrice;
@@ -73,7 +73,7 @@ public class BuildOwnController implements Initializable {
      * the combo box selection changes and button clicks that occur in the interface.
      * (ex: adds and remove toppings when the respective buttons are clicked)
      *
-     * @param url - url
+     * @param url            - url
      * @param resourceBundle - resource bundle
      */
     @Override
@@ -105,7 +105,6 @@ public class BuildOwnController implements Initializable {
 
     }
 
-    //need to fix for magic numbers
     /**
      * Updates the displayed pizza price based on selected toppings, size, and other options.
      */
@@ -118,11 +117,11 @@ public class BuildOwnController implements Initializable {
                 //if more than 3 toppings, add $1.49 for each additional topping after 3
                 additionalToppingPrice = Math.max(0, toppingCount - MAX_TOPPING) * TOPPING_PRICE;
 
-                if (buildExtraSauce.isSelected()){
+                if (buildExtraSauce.isSelected()) {
                     additionalToppingPrice += MORESAUCECHEESE;
                 }
 
-                if (buildExtraCheese.isSelected()){
+                if (buildExtraCheese.isSelected()) {
                     additionalToppingPrice += MORESAUCECHEESE;
                 }
 
@@ -160,8 +159,6 @@ public class BuildOwnController implements Initializable {
         return PizzaMaker.createPizza(pizzaType + " " + size + " false false " + sauce + " " + allToppings.toString().trim());
     }
 
-    //need at least 3 toppings, add this requirement
-    //for each additional topping after 3, add $1.49
     /**
      * Selects and adds toppings to a new ListView of selected toppings
      * Handles errors and displays pop-up alerts for specific cases
@@ -221,13 +218,13 @@ public class BuildOwnController implements Initializable {
         private void addToOrder() {
             order = HelloApplication.getOrder();
             if (sizeComboBox.getValue() != null) {
-                if (toppingCount >= MIN_TOPPING){
+                if (toppingCount >= MIN_TOPPING) {
                     if (buildExtraCheese.isSelected())
                         pizza.setExtraCheese(true);
                     if (buildExtraSauce.isSelected())
                         pizza.setExtraSauce(true);
                     order.addPizza(pizza);
-                 //   pizza = null;
+                    //   pizza = null;
                     showSuccessPopup();
                 } else {
                     showFailurePopup1();

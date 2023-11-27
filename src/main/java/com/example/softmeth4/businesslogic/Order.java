@@ -14,19 +14,19 @@ import java.util.List;
  */
 public class Order {
     private static final double TAX_RATE = 0.06625;
-            ;
     private int orderNumber;
-    private ArrayList<Pizza> pizzas;
+    private final ArrayList<Pizza> pizzas;
     private double subTotalValue;
     private double salesTaxValue;
     private double orderTotalValue;
     private String finalSubTotal;
     private String finalSalesTax;
     private String finalOrderTotal;
+
     /**
      * Default constructor creates a new ArrayList of pizzas in an order
      */
-    public Order(){
+    public Order() {
         pizzas = new ArrayList<>();
     }
 
@@ -44,7 +44,7 @@ public class Order {
      *
      * @param pizza - specific pizza
      */
-    public void addPizza(Pizza pizza){
+    public void addPizza(Pizza pizza) {
         pizzas.add(pizza);
     }
 
@@ -53,31 +53,40 @@ public class Order {
      *
      * @param pizza - pizza from the order
      */
-    public void removePizza(Pizza pizza){pizzas.remove(pizza);}
+    public void removePizza(Pizza pizza) {
+        pizzas.remove(pizza);
+    }
 
     /**
      * Getter method (accessor)
      *
      * @return pizzas
      */
-    public ArrayList<Pizza> getPizzas() { return pizzas; }
+    public ArrayList<Pizza> getPizzas() {
+        return pizzas;
+    }
 
     /**
      * Getter method (accessor)
      *
      * @return orderTotalValue
      */
-    public double getOrderTotalValue() { return orderTotalValue;}
+    public double getOrderTotalValue() {
+        return orderTotalValue;
+    }
 
     /**
      * Getter method (accessor)
      *
      * @return orderNumber
      */
-    public int getOrderNumber() { return orderNumber;}
+    public int getOrderNumber() {
+        return orderNumber;
+    }
 
     /**
      * Setter method (mutator)
+     *
      * @param orderNumber - order number for a specific order
      */
     public void setOrderNumber(int orderNumber) {
@@ -116,6 +125,7 @@ public class Order {
     }
 
     //instead of just subtotal, displays subtotal, sales tax, and order total
+
     /**
      * Returns a textual representation of a customer's order with each pizza and their respective details,
      * also contains values for subtotal, sales tax, and order total amount.
@@ -140,9 +150,8 @@ public class Order {
 
     /**
      * Calculates values for subtotal, sales tax, and total amount for a pizza order.
-     *
      */
-    private void calculateFinalOrderValues(){
+    private void calculateFinalOrderValues() {
         subTotalValue = 0.0;
         for (Pizza pizza : pizzas) {
             subTotalValue += pizza.price();

@@ -22,14 +22,15 @@ public abstract class Pizza {
     protected Sauce sauce;
     protected boolean extraSauce;
     protected boolean extraCheese;
+
     public abstract double price();
 
     /**
      * Parameterized constructor allows for the creation of a pizza given size,
      * choice of extra sauce and/or extra cheese, and the respective toppings.
      *
-     * @param size - size of pizza
-     * @param extraSauce - choice of extra sauce
+     * @param size        - size of pizza
+     * @param extraSauce  - choice of extra sauce
      * @param extraCheese - choice of extra cheese
      */
     public Pizza(Size size, boolean extraSauce, boolean extraCheese) {
@@ -47,15 +48,14 @@ public abstract class Pizza {
      */
     @Override
     public String toString() {
-        StringBuilder pizzaString = new StringBuilder();
-        pizzaString.append("Type: ").append(getPizzaType()).append("\n");
-        pizzaString.append("Size: ").append(size).append("\n");
-        pizzaString.append("Extra Sauce: ").append(extraSauce).append("\n");
-        pizzaString.append("Extra Cheese: ").append(extraCheese).append("\n");
-        pizzaString.append("Toppings: ").append(toppingsToString()).append("\n");
-        pizzaString.append("Price: $").append(String.format("%.2f", price())).append("\n");
+        String pizzaString = "Type: " + getPizzaType() + "\n" +
+                "Size: " + size + "\n" +
+                "Extra Sauce: " + extraSauce + "\n" +
+                "Extra Cheese: " + extraCheese + "\n" +
+                "Toppings: " + toppingsToString() + "\n" +
+                "Price: $" + String.format("%.2f", price()) + "\n";
 
-        return pizzaString.toString();
+        return pizzaString;
     }
 
     /**
@@ -88,14 +88,18 @@ public abstract class Pizza {
      *
      * @return true if choice of extra sauce is selected, false otherwise
      */
-    public boolean hasExtraSauce(boolean extraSauce){return extraSauce;}
+    public boolean hasExtraSauce(boolean extraSauce) {
+        return extraSauce;
+    }
 
     /**
      * Checks if customer has chosen extra cheese
      *
      * @return true if choice of extra cheese is selected, false otherwise
      */
-    public boolean hasExtraCheese(boolean extraCheese){ return extraCheese;}
+    public boolean hasExtraCheese(boolean extraCheese) {
+        return extraCheese;
+    }
 
     /**
      * Returns a string representation of a pizza's toppings

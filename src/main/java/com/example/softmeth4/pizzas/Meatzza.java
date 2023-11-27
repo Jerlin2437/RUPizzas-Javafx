@@ -11,15 +11,15 @@ import com.example.softmeth4.enums.Topping;
  *
  * @author Jerlin Yuen, Jason Lei
  */
-public class Meatzza extends Pizza{
+public class Meatzza extends Pizza {
     private static final double MEATZZA_PRICE = 16.99;
 
     /**
      * Parameterized constructor allows for the creation of a Meatzza pizza,
      * contains list of preset toppings and sauce.
      *
-     * @param size - size of pizza
-     * @param extraSauce - choice of extra sauce
+     * @param size        - size of pizza
+     * @param extraSauce  - choice of extra sauce
      * @param extraCheese - choice of extra cheese
      */
     public Meatzza(Size size, boolean extraSauce, boolean extraCheese) {
@@ -50,10 +50,10 @@ public class Meatzza extends Pizza{
     @Override
     public double price() {
         double extraCost = 0.0;
-        if (hasExtraSauce(extraSauce)){
+        if (hasExtraSauce(extraSauce)) {
             extraCost += 1.0;
         }
-        if (hasExtraCheese(extraCheese)){
+        if (hasExtraCheese(extraCheese)) {
             extraCost += 1.0;
         }
         return MEATZZA_PRICE + size.getPrice() + extraCost;

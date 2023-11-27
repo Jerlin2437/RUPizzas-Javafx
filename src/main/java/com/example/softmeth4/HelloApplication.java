@@ -63,17 +63,12 @@ public class HelloApplication extends Application {
      * titles and dimensions
      *
      * @param fxmlFile file
-     * @param title title of screen
-     * @param width width of screen
-     * @param height height of screen
+     * @param title    title of screen
+     * @param width    width of screen
+     * @param height   height of screen
      */
     public static void showScreen(String fxmlFile, String title, int width, int height) {
         try {
-            //can't use this code bc it doesn't let you reopen windows if they already been opened
-//            if (!loaders.containsKey(fxmlFile)) {
-//                FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
-//                loaders.put(fxmlFile, loader);
-//            }
             FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFile));
             loaders.put(fxmlFile, loader);
 
@@ -82,10 +77,11 @@ public class HelloApplication extends Application {
             newStage.setTitle(title);
             newStage.setScene(scene);
 
-            //maybe need to make way to prevent opening alot of the same windows
             newStage.setOnCloseRequest(event -> {
-                event.consume(); // consumes the event to prevent default close behavior
-                newStage.hide(); // hides stage visibility instead of closing
+                // consumes the event to prevent default close behavior
+                event.consume();
+                // hides stage visibility instead of closing
+                newStage.hide();
             });
 
             newStage.show();
@@ -104,7 +100,7 @@ public class HelloApplication extends Application {
      *
      * @return storeOrders
      */
-    public static StoreOrders getStoreOrders(){
+    public static StoreOrders getStoreOrders() {
         return storeOrders;
     }
 
@@ -113,7 +109,7 @@ public class HelloApplication extends Application {
      *
      * @return order
      */
-    public static Order getOrder(){
+    public static Order getOrder() {
         return order;
     }
 
@@ -139,28 +135,28 @@ public class HelloApplication extends Application {
     /**
      * Opens the screen for specialty pizza orders
      */
-    public static void openSpecialty(){
+    public static void openSpecialty() {
         showScreen("specialty-pizza.fxml", "Order specialty pizzas!", 640, 500);
     }
 
     /**
      * Opens the screen for "build your own pizza" orders
      */
-    public static void openBuildOwn(){
+    public static void openBuildOwn() {
         showScreen("build-own.fxml", "Build your own pizza!", 640, 500);
     }
 
     /**
      * Opens the screen for the current order
      */
-    public static void openCurrentOrder(){
+    public static void openCurrentOrder() {
         showScreen("current-order.fxml", "Order Detail", 640, 500);
     }
 
     /**
      * Opens the screen for the collection of store orders
      */
-    public static void openStoreOrder(){
+    public static void openStoreOrder() {
         showScreen("store-order.fxml", "Store Orders", 640, 500);
     }
 }

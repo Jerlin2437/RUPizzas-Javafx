@@ -1,15 +1,16 @@
 package com.example.softmeth4;
 
 import com.example.softmeth4.businesslogic.Order;
-
 import com.example.softmeth4.businesslogic.StoreOrders;
-import com.example.softmeth4.enums.Topping;
 import com.example.softmeth4.pizzas.Pizza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.List;
@@ -28,7 +29,7 @@ public class CurrentOrderController implements Initializable {
     private static final double TAX_RATE = 0.06625;
     private static final int ILLEGAL_INDEX = -1;
     private Order order;
-    private StoreOrders storeOrders;
+    private final StoreOrders storeOrders;
     private String currentOrderNumber;
     private double subtotalValue;
     private double salesTaxValue;
@@ -54,7 +55,7 @@ public class CurrentOrderController implements Initializable {
      * Default constructor, initializing an instance of a customer's pizza order
      * and the store's collection of orders
      */
-    public CurrentOrderController(){
+    public CurrentOrderController() {
         order = HelloApplication.getOrder();
         storeOrders = HelloApplication.getStoreOrders();
     }
@@ -64,19 +65,20 @@ public class CurrentOrderController implements Initializable {
 //        this.currentOrderView = currentOrderView;
 //        updateCurrentOrderView();
 //    }
+
     /**
      * Initializes listeners and event handlers for various UI elements, including
      * the combo box selection changes and button clicks that occur in the interface.
      * (ex: removes pizzas from an order and places an order when the respective buttons are clicked)
      *
-     * @param url - url
+     * @param url            - url
      * @param resourceBundle - resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateCurrentOrderView();
         removePizza.setOnAction(event -> {
-          //  order = HelloApplication.getOrder();
+            //  order = HelloApplication.getOrder();
             removeSelectedPizza();
         });
         placeOrder.setOnAction(event -> {
@@ -90,24 +92,25 @@ public class CurrentOrderController implements Initializable {
      * order number, subtotal, sales tax, and order total.
      */
     @FXML
-    public void refresh(){
+    public void refresh() {
         updateCurrentOrderView();
     }
 
 //idk
+
     /**
      * Places the current order, adding it to the store's orders and resetting
      * the current order.
      */
-    public void placeOrder(){
-        if (!order.getPizzas().isEmpty() && currentOrderView.getItems().size() == order.getPizzas().size()){
+    public void placeOrder() {
+        if (!order.getPizzas().isEmpty() && currentOrderView.getItems().size() == order.getPizzas().size()) {
             showAddedPopup();
             updateCurrentOrderView();
             storeOrders.addOrder(order);
             HelloApplication.setOrder(new Order());
             order = HelloApplication.getOrder();
             updateCurrentOrderView();
-        } else{
+        } else {
             showEmptyPopup();
         }
     }
@@ -115,9 +118,9 @@ public class CurrentOrderController implements Initializable {
     /**
      * Removes the selected pizza from the order.
      */
-    public void removeSelectedPizza(){
+    public void removeSelectedPizza() {
         int selectedIndex = currentOrderView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != ILLEGAL_INDEX){
+        if (selectedIndex != ILLEGAL_INDEX) {
             Pizza selectedPizza = order.getPizzas().get(selectedIndex);
             order.removePizza(selectedPizza);
             updateCurrentOrderView();
@@ -129,7 +132,7 @@ public class CurrentOrderController implements Initializable {
      * Updates the UI to reflect the current state of the order, including pizza details,
      * order number, subtotal, sales tax, and order total.
      */
-    private void updateCurrentOrderView(){
+    private void updateCurrentOrderView() {
         List<String> pizzaSummaries = order.getPizzaDetails();
         ObservableList<String> observableList = FXCollections.observableArrayList(pizzaSummaries);
         currentOrderView.setItems(observableList);

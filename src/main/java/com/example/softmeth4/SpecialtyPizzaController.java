@@ -2,7 +2,7 @@ package com.example.softmeth4;
 
 import com.example.softmeth4.businesslogic.Order;
 import com.example.softmeth4.businesslogic.PizzaMaker;
-import com.example.softmeth4.pizzas.*;
+import com.example.softmeth4.pizzas.Pizza;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -59,7 +59,7 @@ public class SpecialtyPizzaController implements Initializable {
     /**
      * Default constructor, initializing an instance of a customer's pizza order
      */
-    public SpecialtyPizzaController(){
+    public SpecialtyPizzaController() {
         order = HelloApplication.getOrder();
     }
 
@@ -68,11 +68,11 @@ public class SpecialtyPizzaController implements Initializable {
      * the combo box selection changes and button clicks that occur in the interface.
      * (ex: updates displayed pizza price when the respective buttons are clicked)
      *
-     * @param url - url
+     * @param url            - url
      * @param resourceBundle - resource bundle
      */
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle){
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         chooseSpecialty.getItems().addAll("Deluxe", "Supreme", "Meatzza", "Seafood", "Pepperoni");
         chooseSpecialty.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             toppings.getItems().clear();
@@ -101,7 +101,8 @@ public class SpecialtyPizzaController implements Initializable {
         specialtyRadioButtonGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && newValue.isSelected()) {
                 updatePizzaPrice();
-            }});
+            }
+        });
         extraSauce.setOnAction(event -> updatePizzaPrice());
         extraCheese.setOnAction(event -> updatePizzaPrice());
 
@@ -119,16 +120,15 @@ public class SpecialtyPizzaController implements Initializable {
      *
      * @return customized pizza based on user selections
      */
-    private Pizza pizzaParse(){
+    private Pizza pizzaParse() {
         Toggle selectedToggle = specialtyRadioButtonGroup.getSelectedToggle();
         RadioButton selectedRadioButton = (RadioButton) selectedToggle;
         String size = selectedRadioButton.getText();
         String pizzaType = chooseSpecialty.getValue();
-        return PizzaMaker.createPizza(pizzaType +" " + size + " false false");
+        return PizzaMaker.createPizza(pizzaType + " " + size + " false false");
     }
 
 
-    //need to fix magic numbers
     /**
      * Updates the displayed pizza price based on whether extra sauce and/or extra cheese is selected
      */
@@ -139,11 +139,11 @@ public class SpecialtyPizzaController implements Initializable {
             double basePrice = pizza.price();
             //resets to 0
             extraToppingsPrice = 0.0;
-            if (extraSauce.isSelected()){
+            if (extraSauce.isSelected()) {
                 extraToppingsPrice += MORESAUCECHEESE;
             }
 
-            if (extraCheese.isSelected()){
+            if (extraCheese.isSelected()) {
                 extraToppingsPrice += MORESAUCECHEESE;
             }
 
@@ -160,7 +160,7 @@ public class SpecialtyPizzaController implements Initializable {
                 Image pizzaImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
                 pizzaImageView.setImage(pizzaImage);
             } catch (Exception e) {
-                // Handle the exception, e.g., display a default image or log a warning.
+                //handles the exception, ex: displays a default image
                 e.printStackTrace();
             }
         }
@@ -169,7 +169,7 @@ public class SpecialtyPizzaController implements Initializable {
     /**
      * An inner class that handles the action event triggered by the buildAddToOrder button
      */
-    public class addToOrderHandler implements EventHandler<ActionEvent>{
+    public class addToOrderHandler implements EventHandler<ActionEvent> {
         /**
          * Event handler that calls the method addToOrder() when the action event
          * is triggered (button is pressed)
@@ -180,19 +180,20 @@ public class SpecialtyPizzaController implements Initializable {
         public void handle(ActionEvent actionEvent) {
             addToOrder();
         }
+
         /**
          * Adds the specified specialty pizza to the order, displaying a success popup if successful,
          * and a failure popup if it does not meet requirements (ex: pizza does not have at least 3 toppings)
          */
-        private void addToOrder(){
+        private void addToOrder() {
             order = HelloApplication.getOrder();
-            if (chooseSpecialty.getValue() != null){
-                if(extraCheese.isSelected())
+            if (chooseSpecialty.getValue() != null) {
+                if (extraCheese.isSelected())
                     pizza.setExtraCheese(true);
                 if (extraSauce.isSelected())
                     pizza.setExtraSauce(true);
                 order.addPizza(pizza);
-              //  pizza = null;
+                //  pizza = null;
                 showSuccessPopup();
             } else
                 showFailurePopup();

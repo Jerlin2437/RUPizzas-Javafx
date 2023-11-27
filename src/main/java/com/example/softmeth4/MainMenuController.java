@@ -1,6 +1,5 @@
 package com.example.softmeth4;
 
-import com.example.softmeth4.businesslogic.StoreOrders;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,9 +29,9 @@ public class MainMenuController {
      *
      * @param helloApplication instance of the class
      */
-        public void setHelloApplication(HelloApplication helloApplication){
-            this.helloApplication = helloApplication;
-        }
+    public void setHelloApplication(HelloApplication helloApplication) {
+        this.helloApplication = helloApplication;
+    }
 
     /**
      * Event handler that calls the method openSpecialty() when the action event
@@ -41,10 +40,10 @@ public class MainMenuController {
      *
      * @param event action event
      */
-        @FXML
-        private void handleSpecialtyPizza (ActionEvent event){
-            HelloApplication.openSpecialty();
-        }
+    @FXML
+    private void handleSpecialtyPizza(ActionEvent event) {
+        HelloApplication.openSpecialty();
+    }
 
     /**
      * Event handler that calls the method openBuildOwn() when the action event
@@ -53,10 +52,10 @@ public class MainMenuController {
      *
      * @param event action event
      */
-        @FXML
-        private void handleBuildOwn (ActionEvent event){
-            HelloApplication.openBuildOwn();
-        }
+    @FXML
+    private void handleBuildOwn(ActionEvent event) {
+        HelloApplication.openBuildOwn();
+    }
 
     /**
      * Event handler that calls the method openCurrentOrder() when the action event
@@ -65,10 +64,10 @@ public class MainMenuController {
      *
      * @param event action event
      */
-        @FXML
-        private void handleCurrentOrder (ActionEvent event){
-            HelloApplication.openCurrentOrder();
-        }
+    @FXML
+    private void handleCurrentOrder(ActionEvent event) {
+        HelloApplication.openCurrentOrder();
+    }
 
     /**
      * Event handler that calls the method openStoreOrder() when the action event
@@ -77,9 +76,9 @@ public class MainMenuController {
      *
      * @param event action event
      */
-        @FXML
-        private void handleStoreOrder (ActionEvent event){
-            HelloApplication.openStoreOrder();
-        }
+    @FXML
+    private void handleStoreOrder(ActionEvent event) {
+        HelloApplication.openStoreOrder();
     }
+}
 

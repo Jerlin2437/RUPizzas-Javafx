@@ -29,7 +29,7 @@ public class PizzaMaker {
      *
      * @return a pizza of a specific pizza type, containing everything parsed from the string representation of the pizza
      */
-    public static Pizza createPizza(String pizzaType){
+    public static Pizza createPizza(String pizzaType) {
         String[] parsedPizza = pizzaType.split(" ");
         Size size = Size.fromString(parsedPizza[1]);
         boolean extraSauce = Boolean.parseBoolean(parsedPizza[EXTRASAUCE_PARSE]);
@@ -42,15 +42,15 @@ public class PizzaMaker {
             return new Meatzza(size, extraSauce, extraCheese);
         else if (Objects.equals(parsedPizza[0], "Deluxe"))
             return new Deluxe(size, extraSauce, extraCheese);
-        else if (Objects.equals(parsedPizza[0],"Pepperoni"))
+        else if (Objects.equals(parsedPizza[0], "Pepperoni"))
             return new Pepperoni(size, extraSauce, extraCheese);
-        else if (Objects.equals(parsedPizza[0], "BYO")){
+        else if (Objects.equals(parsedPizza[0], "BYO")) {
             Sauce sauce = Sauce.fromString(parsedPizza[SAUCE_PARSE]);
             ArrayList<Topping> toppings = new ArrayList<>();
-            for (int x = TOPPING_PARSE; x < parsedPizza.length; x++){
+            for (int x = TOPPING_PARSE; x < parsedPizza.length; x++) {
                 toppings.add(Topping.fromString(parsedPizza[x]));
             }
-            return new BuildYourOwn(size, extraSauce, extraCheese, sauce,toppings);
+            return new BuildYourOwn(size, extraSauce, extraCheese, sauce, toppings);
         }
         return null;
     }

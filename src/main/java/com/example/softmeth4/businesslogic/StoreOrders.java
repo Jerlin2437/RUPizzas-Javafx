@@ -1,10 +1,5 @@
 package com.example.softmeth4.businesslogic;
 
-import com.example.softmeth4.enums.Size;
-import com.example.softmeth4.enums.Topping;
-import com.example.softmeth4.pizzas.BuildYourOwn;
-import com.example.softmeth4.pizzas.Meatzza;
-import com.example.softmeth4.pizzas.Pizza;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -21,7 +16,7 @@ import java.util.ArrayList;
  */
 public class StoreOrders {
     private static int nextOrderNum;
-    private ArrayList<Order> orders;
+    private final ArrayList<Order> orders;
 
     /**
      * Default constructor, initializes the order number to begin with 1 and
@@ -38,7 +33,7 @@ public class StoreOrders {
      *
      * @param order - specific order
      */
-    public void addOrder(Order order){
+    public void addOrder(Order order) {
         order.setOrderNumber(nextOrderNum);
         nextOrderNum++;
         orders.add(order);
@@ -73,8 +68,8 @@ public class StoreOrders {
      *
      * @return true, if order with a specific order number is found and removed, false otherwise
      */
-    public boolean removeOrder(int orderNumber){
-        for (int x = 0; x < getTotalOrders(); x++){
+    public boolean removeOrder(int orderNumber) {
+        for (int x = 0; x < getTotalOrders(); x++) {
             if (orderNumber == orders.get(x).getOrderNumber()) {
                 orders.remove(x);
                 return true;
@@ -88,7 +83,7 @@ public class StoreOrders {
      *
      * @return size of list of orders
      */
-    public int getTotalOrders(){
+    public int getTotalOrders() {
         return orders.size();
     }
 
@@ -107,9 +102,9 @@ public class StoreOrders {
      *
      * @return specific order
      */
-    public Order getOrderByNumber(int orderNumber){
-        for (Order order: orders){
-            if (order.getOrderNumber() == orderNumber){
+    public Order getOrderByNumber(int orderNumber) {
+        for (Order order : orders) {
+            if (order.getOrderNumber() == orderNumber) {
                 return order;
             }
         }
@@ -123,8 +118,8 @@ public class StoreOrders {
      *
      * @return true if export is successful, false otherwise
      */
-    public boolean export(Stage primaryStage){
-        if (orders.isEmpty()){
+    public boolean export(Stage primaryStage) {
+        if (orders.isEmpty()) {
             return false;
         }
 
@@ -149,7 +144,6 @@ public class StoreOrders {
         }
         return false;
     }
-
 
 
 }

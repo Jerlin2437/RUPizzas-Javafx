@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Jerlin Yuen, Jason Lei
  */
-public class BuildYourOwn extends Pizza{
+public class BuildYourOwn extends Pizza {
     private static final double BYO_PRICE = 8.99;
     private static final int MIN_TOPPING = 3;
     private static final double ADDITIONAL_TOPPINGS = 1.49;
@@ -21,13 +21,13 @@ public class BuildYourOwn extends Pizza{
     /**
      * Parameterized constructor allows for the creation of a BYO pizza
      *
-     * @param size - size of pizza
-     * @param extraSauce - choice of extra sauce
+     * @param size        - size of pizza
+     * @param extraSauce  - choice of extra sauce
      * @param extraCheese - choice of extra cheese
-     * @param sauce - type of sauce
-     * @param toppings - list of all toppings selected
+     * @param sauce       - type of sauce
+     * @param toppings    - list of all toppings selected
      */
-    public BuildYourOwn(Size size,  boolean extraSauce, boolean extraCheese, Sauce sauce, ArrayList<Topping> toppings) {
+    public BuildYourOwn(Size size, boolean extraSauce, boolean extraCheese, Sauce sauce, ArrayList<Topping> toppings) {
         super(size, extraSauce, extraCheese);
         this.sauce = sauce;
         this.toppings = toppings;
@@ -53,16 +53,15 @@ public class BuildYourOwn extends Pizza{
     @Override
     public double price() {
         double extraCost = 0.0;
-        if (hasExtraSauce(extraSauce)){
+        if (hasExtraSauce(extraSauce)) {
             extraCost += 1.0;
         }
-        if (hasExtraCheese(extraCheese)){
+        if (hasExtraCheese(extraCheese)) {
             extraCost += 1.0;
         }
-        if (toppings.size() <= MIN_TOPPING){
+        if (toppings.size() <= MIN_TOPPING) {
             return BYO_PRICE + size.getPrice() + extraCost;
-        }
-        else
+        } else
             return (BYO_PRICE + size.getPrice() + (toppings.size() - MIN_TOPPING) * ADDITIONAL_TOPPINGS) + extraCost;
     }
 }
