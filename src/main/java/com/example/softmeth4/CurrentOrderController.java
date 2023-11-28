@@ -185,9 +185,9 @@ public class CurrentOrderController implements Initializable {
      */
     private void showRemovedPopup() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Pizza Order Removed Successfully");
+        alert.setTitle("Pizza Removed Successfully");
         alert.setHeaderText(null);
-        alert.setContentText("Order removed!");
+        alert.setContentText("Pizza removed!");
         alert.initOwner(currentOrderView.getScene().getWindow());
         alert.showAndWait();
     }
