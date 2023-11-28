@@ -153,6 +153,10 @@ public class SpecialtyPizzaController implements Initializable {
         }
     }
 
+    /**
+     * Updates pizza image based on type of pizza
+     * @param pizzaType signifies the type of pizza selected
+     */
     private void updatePizzaImage(String pizzaType) {
         String imagePath = pizzaImageMap.get(pizzaType);
         if (imagePath != null) {
