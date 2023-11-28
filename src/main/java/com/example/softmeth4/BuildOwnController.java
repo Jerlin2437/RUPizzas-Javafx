@@ -32,7 +32,6 @@ public class BuildOwnController implements Initializable {
     private static final double TOPPING_PRICE = 1.49;
     private static final double MORESAUCECHEESE = 1.0;
     private Order order;
-    private final StoreOrders storeOrders;
     private Pizza pizza;
     private int toppingCount;
     private double additionalToppingPrice;
@@ -61,11 +60,9 @@ public class BuildOwnController implements Initializable {
 
     /**
      * Default constructor, initializing an instance of a customer's pizza order
-     * and the store's collection of orders
      */
     public BuildOwnController() {
         order = HelloApplication.getOrder();
-        storeOrders = HelloApplication.getStoreOrders();
     }
 
     /**
