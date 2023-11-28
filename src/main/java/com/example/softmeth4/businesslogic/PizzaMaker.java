@@ -26,7 +26,7 @@ public class PizzaMaker {
     /**
      * Given a string representation of a pizza, it parses the string and creates a pizza of a respective pizza type,
      * of a specific size, considers whether it has extra sauce and/or cheese, and adds the toppings given a list of toppings.
-     *
+     * @param pizzaType type of pizza to be parsed
      * @return a pizza of a specific pizza type, containing everything parsed from the string representation of the pizza
      */
     public static Pizza createPizza(String pizzaType) {

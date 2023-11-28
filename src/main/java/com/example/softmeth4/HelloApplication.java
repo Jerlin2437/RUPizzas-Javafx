@@ -91,6 +91,10 @@ public class HelloApplication extends Application {
         }
     }
 
+    /**
+     * gets the primary stage
+     * @return primaryStage
+     */
     public static Stage getPrimaryStage() {
         return primaryStage;
     }

@@ -23,6 +23,10 @@ public abstract class Pizza {
     protected boolean extraSauce;
     protected boolean extraCheese;
 
+    /**
+     * abstract method of getting pizza price
+     * @return pizza price
+     */
     public abstract double price();
 
     /**
@@ -85,7 +89,7 @@ public abstract class Pizza {
 
     /**
      * Checks if customer has chosen extra sauce
-     *
+     *@param extraSauce whether or not you want extra sauce
      * @return true if choice of extra sauce is selected, false otherwise
      */
     public boolean hasExtraSauce(boolean extraSauce) {
@@ -94,7 +98,7 @@ public abstract class Pizza {
 
     /**
      * Checks if customer has chosen extra cheese
-     *
+     * @param extraCheese whether or not you want extra cheese
      * @return true if choice of extra cheese is selected, false otherwise
      */
     public boolean hasExtraCheese(boolean extraCheese) {

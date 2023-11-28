@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.softmeth4","l":"com.example.softmeth4"},{"m":"com.example.softmeth4","l":"com.example.softmeth4.businesslogic"},{"m":"com.example.softmeth4","l":"com.example.softmeth4.enums"},{"m":"com.example.softmeth4","l":"com.example.softmeth4.pizzas"}];updateSearchResults();
