@@ -105,7 +105,6 @@ public class SpecialtyPizzaController implements Initializable {
         });
         extraSauce.setOnAction(event -> updatePizzaPrice());
         extraCheese.setOnAction(event -> updatePizzaPrice());
-
         pizzaImageMap = new HashMap<>();
         pizzaImageMap.put("Deluxe", "/deluxepizza.jpg");
         pizzaImageMap.put("Meatzza", "/MEATZZA.jpg");

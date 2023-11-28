@@ -45,8 +45,6 @@ public class CurrentOrderController implements Initializable {
     @FXML
     private Button removePizza;
     @FXML
-    private Button refreshOrder;
-    @FXML
     private TextField salesTax;
     @FXML
     private TextField subtotal;
@@ -60,11 +58,7 @@ public class CurrentOrderController implements Initializable {
         storeOrders = HelloApplication.getStoreOrders();
     }
 
-//    public CurrentOrderController(Order order, ListView<String> currentOrderView){
-//        this.order = order;
-//        this.currentOrderView = currentOrderView;
-//        updateCurrentOrderView();
-//    }
+
 
     /**
      * Initializes listeners and event handlers for various UI elements, including
