@@ -119,12 +119,16 @@ public class CurrentOrderController implements Initializable {
      * Removes the selected pizza from the order.
      */
     public void removeSelectedPizza() {
-        int selectedIndex = currentOrderView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != ILLEGAL_INDEX) {
-            Pizza selectedPizza = order.getPizzas().get(selectedIndex);
-            order.removePizza(selectedPizza);
-            updateCurrentOrderView();
-            showRemovedPopup();
+        if (order.getPizzas().isEmpty()) {
+            showRemoveButEmptyPopup();
+        } else {
+            int selectedIndex = currentOrderView.getSelectionModel().getSelectedIndex();
+            if (selectedIndex != ILLEGAL_INDEX) {
+                Pizza selectedPizza = order.getPizzas().get(selectedIndex);
+                order.removePizza(selectedPizza);
+                updateCurrentOrderView();
+                showRemovedPopup();
+            }
         }
     }
 
@@ -208,6 +212,18 @@ public class CurrentOrderController implements Initializable {
         alert.setTitle("Not all Pizzas are in the Order Yet!");
         alert.setHeaderText(null);
         alert.setContentText("Not all pizzas have been added to the order yet! If you have ordered some, please refresh.");
+        alert.initOwner(currentOrderView.getScene().getWindow());
+        alert.showAndWait();
+    }
+
+    /**
+     * Displays alert popups for attempting to remove a pizza from an empty order
+     */
+    private void showRemoveButEmptyPopup() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("No Pizzas in the Order");
+        alert.setHeaderText(null);
+        alert.setContentText("There are no pizzas in the order to remove.");
         alert.initOwner(currentOrderView.getScene().getWindow());
         alert.showAndWait();
     }
